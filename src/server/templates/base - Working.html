@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    {% load thumbnail %}
+    
+  <head>
+    <meta charset="utf-8">  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content ="width=device-width, initial-scale=1.">  
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="author" content="Albert Ferguson">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'site/img/logo.svg' %}">
+
+    <title>{% block title %}{% include "_brandname.html" %} :: {% endblock %}</title>
+
+    <!-- Custom styles for this site -->
+    {% block styles %}
+    <link href="{% static 'site/css/main.css' %}" type="text/css" rel="stylesheet">
+    {% endblock styles %}
+
+    <!-- Custom tags for the head tag -->
+    {% block extrahead %}{% endblock extrahead %}
+  </head>
+
+  <body>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    {% block navbar %}
+    
+    <header class="header">
+      <div class="wrapper">
+        <div class="header-left">
+          <a aria-current="page" class="logo header-brand-text" href="{% url 'home' %}"> <!-- old navbar-brand class -->
+          {% block navbar-brand %}
+              <img src="{% static 'site/img/D_symbol_link.png' %}">
+              {% include "_brandname.html" %}
+          {% endblock %}
+          </a>
+        </div> <!-- /header-left -->     
+        {% block navbar-menu %}
+        <div class="header-right">
+          <nav class="header-nav">
+            <div class="nav-links">  
+              <a class="header-nav-link" href="{% url 'home' %}">Home</a>
+              <a class="header-nav-link" href="{% url 'about' %}">About</a>
+              <!-- <a class="header-nav-link btn-default header-nav-link.button" href="{% url 'accounts:login' %}">Log in</a>
+              <a class="header-nav-link btn header-nav-link.button" href="{% url 'accounts:signup' %}">Sign up</a> -->
+              {% block navbar-right %}
+              {% endblock %} <!-- /.navbar-right -->
+            </div>
+          </div> <!--/.header-nav -->
+        </div>
+        {% endblock %} <!-- /.navbar-menu -->
+      </div> <!-- /wrapper -->
+    </header> <!-- /header-->
+    
+    {% endblock navbar %}
+
+    {% block messages %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">  <!-- singular -->
+            <a class="close" data-dismiss="alert">×</a>
+            {{ message|safe }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endblock %}
+
+    {% block splash %}
+    {% endblock splash %}
+    
+    <!-- Site footer -->
+    {% block footer %}
+      <!-- Some social button for contact will do -->
+      <!-- Add social contact links for the page.-->
+      <a id="contact"></a>
+      <div class="container">
+            <div class="footer">
+        <div class="row">
+          <div class="col-lg-6">
+              <p>&copy; Devise Solutions Ltd. {% now 'Y' %}</p>
+          </div>
+          <div class="col-lg-6 text-right">
+            Connect with us on
+            <!-- Logos are retrieved from the bootstrap source. -->
+            <a href="#"><i class="fa fa-facebook"></i> Facebook</a> or
+            <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
+          </div>
+        </div>
+            </div>
+      </div>
+    {% endblock %}
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    {% block scripts %}
+    {% endblock scripts %}
+  </body>
+</html>

@@ -1,0 +1,9 @@
+.widget-frame {
+  position: relative;
+  margin-top: 5vh;
+  display: block;
+  right: unset;
+  left: unset;
+  right: unset;
+  width: auto;
+}

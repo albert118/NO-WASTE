@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ block.super }}Home{% endblock %}
+
+{% block styles %}
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
+{% endblock styles %}
+
+{% block splash %}
+  <div class="jumbotron jumbotron-carousel corporate-jumbo">
+  </div>
+{% endblock splash %}
+
+{% block container %}
+  <div class="info-block">
+    <div class="wrapper">
+      <div className=inline-header>
+        <img class="img" src="{% static 'site/img/logo.svg' %}" alt="about">
+        <h2>NO-WASTE IOT kitchen... shit, something, idk...</h2>
+      </div>
+      <div className="inline-header">
+        <a style="transition-delay: 0.6s;" className="inline-header" title="About" href="/about" >
+          <h2>Read more</h2>
+          <div className="inline-header">
+            <p>Find out about the team behind the project and what drives us!</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block scripts %}
+  <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+{% endblock scripts %}

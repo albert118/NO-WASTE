@@ -1,0 +1,310 @@
+@import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
+
+html, body{
+    height:100%;
+    /* For full height images */
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: 100%;
+  padding: 0 40px;
+  opacity: 1;
+  background-color: #2c3242;
+  box-shadow: 0 0 40px 0 rgba(19,25,30,.1);
+}
+
+.header .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.a {
+  text-decoration: none;
+  cursor: auto;
+}
+
+.header-right {
+  width: 100%;
+  justify-content: flex-end!important;
+}
+
+.header-left,.header-right {
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
+}
+
+.nav-links {
+  width: 100%;
+  /* make sure nav links scale fully always */
+}
+
+.header-right .btn {
+  padding: 8px 25px!important;
+  font-size: 15px!important;
+}
+
+.header-nav-link.button {
+    display: inline-flex!important;
+    margin: 0 0 0 15px;
+}
+
+.header-right .btn, .header-left .btn { 
+  margin: 0 20px;
+  /*margin for header buttons to align with link text */
+}
+
+.header-nav-link {
+    margin: 0 15px;
+    color: #fff;
+}
+
+.btn {
+  align-items: center;
+  border: 1px solid black;
+  background: #e1c04a;
+  background-size: 250% 100%;
+  background-position: 100%;
+  border-radius: 6px;
+  padding: 10px 25px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4em;
+  color: #fff;
+  text-align: center;
+}
+
+.btn-default {
+  align-items: center;
+  border: 1px solid black;
+  background: #fff;
+  background-size: 250% 100%;
+  background-position: 100%;
+  border-radius: 6px;
+  padding: 10px 25px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4em;
+  color: black;
+  text-align: center;
+}
+
+.header .header-brand-text {
+  position: relative;
+  height: 60px;
+  font-weight: bold;
+  width: 140px;
+  color: #fff;
+}
+
+.header-brand-text > img {
+  float: left;
+  margin-right: 10px;
+  width: 25%;
+}
+
+body > .header-transparent {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.header-transparent .nav > .active > a {
+    background-color: transparent;
+}
+
+.navbar-form {
+    margin-right: 0;
+}
+
+.header-nav > li > a.profile-menu {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.header-right > .btn {
+    margin-top:10px;
+    margin-right: 1.7em;
+}
+
+.header-nav > li > a {
+    font-size: 16px;
+}
+
+.footer {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+}
+
+.alert {
+    margin-top: 55px;
+    margin-bottom: 0;
+}
+
+/* Big Image styling */
+.corporate-jumbo {
+    /* home page background image at top of page */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)),
+    url("/static/site/img/logo.png");
+    background-repeat: no-repeat;
+    background-position: 80% center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    color: #f5f5f5;
+    padding: 10em 0;
+    margin-bottom: 0;
+    height: 100%;
+}
+
+.corporate-jumbo .well {
+    background-color: rgba(245, 245, 245, .7);
+}
+
+.corporate-jumbo p, .corporate-jumbo h1 {
+    color: #eee;
+    text-shadow: 0px 0px 2px black;
+}
+
+.corporate-jumbo p {
+    font-weight: 500;
+}
+
+.corporate-jumbo .well legend {
+    color: #333;
+}
+
+.corporate-jumbo > .container {
+    display: block;
+    position: absolute;
+    bottom: 2em;
+    left: 15px;
+}
+
+
+/* contact and social banner styling */
+.contact-banner {
+    padding: 100px 0;
+    background: #e0e0e0;
+    margin-top: 100px;
+}
+
+.footer a:hover {
+    text-decoration: none;
+}
+
+/* drop down styling for login dropdown menu */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  color: black;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/*Change the colour of links on hover */
+.dropdown-menu a:hover { background-color: #ddd }
+/* Show the drop down menu on hover */
+.dropdown:hover .dropdown-menu {display: block;}
+/*change the background colour of the dropdown button when the 
+dropdown content is shown*/
+.dropdown:hover .dropdown-toggle {background-color: #eaeaea;}
+
+/* About page styling */
+#sec1 {
+    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAJklEQVQIW2NkAIILFy78NzAwYATRjCABZEGwAEwFiA1WBlIOUwkA72gTdDIYVO4AAAAASUVORK5CYII=) repeat;
+}
+
+/* Profile page styling */
+.profile-head {
+    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAJklEQVQIW2NkAIILFy78NzAwYATRjCABZEGwAEwFiA1WBlIOUwkA72gTdDIYVO4AAAAASUVORK5CYII=) repeat;
+    padding: 70px 0px 30px 20px;
+}
+.profile-body {
+    padding: 4px 0px;
+}
+
+.text-page {
+    padding: 120px 0;
+}
+
+#map-outer {
+    height: 440px;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    background-color:#FFF
+}
+
+#map-container {
+    height: 400px
+}
+
+.img-dim {
+    opacity: 0.5;
+    box-shadow: inset 0px 0px 64px 64px #EA1717, 0px 0px 4px 4px #EA1717;
+}
+
+/* Authentication forms */
+.form-box form,
+.form-box .form-message {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-box form .checkbox {
+  margin-bottom: 10px;
+}
+
+.form-box form .checkbox {
+  font-weight: normal;
+}
+
+.form-box form .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-box form .form-control:focus {
+  z-index: 2;
+}
