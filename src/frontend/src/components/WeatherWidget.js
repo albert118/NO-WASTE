@@ -2,23 +2,24 @@ import React, { Component } from 'react';
 import "../static/css/weather-widget.css";
 import axios from 'axios';
 
-// weatherstack api key 3f673dcfe22919435bf219e1a62b6551
 export default class WeatherWidget extends Component {
     constructor(props) {
         super(props);
-        this.setWeatherState();
+        this.state = {
+            weather: this.getWeather().data
+        };
     }
 
     componentDidMount() {
         const updateTimer = 24*60*60;
-        this.intervalID = setInterval(() => this.setWeatherState(), updateTimer);
+        this.intervalID = setInterval(() => this.getWeather(), updateTimer);
     }
 
    componentWillUnmount() {
        clearInterval(this.intervalID);
     }
 
-   setWeatherState() {
+   getWeather() {
        const apiURL = "http://api.weatherstack.com/current"; // https is pro feature
        const axios = require('axios');
        const params = {
@@ -27,15 +28,10 @@ export default class WeatherWidget extends Component {
         }
     
         // axios request promise, use "then" to create second promise to return data
-        axios.get(apiURL, { params }).then(response => {
-            const apiResponse = response.data;
-            console.log("Accessed WeatherStack API.");
-            this.setState({
-                weather: apiResponse
-            });
-        }).catch(error => {
-            console.log(error);
-  });
+        const promise = axios.get(apiURL, { params });
+        const apiResponse = promise.then((response) => response.data);
+        // return the data
+        return apiResponse;
    }
 
     render() {
