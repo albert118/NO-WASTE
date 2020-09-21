@@ -7,7 +7,11 @@
 
 ## JavaScript and NPM
 
-Start by setting up the npm development environment. If you only wish to develop Python elements of this project, install npm and the jsdoc dependency to avoid build errors on docs compilation.
+1. Start by setting up the npm development environment. If you only wish to develop Python elements of this project, install npm and the jsdoc dependency to avoid build errors on docs compilation.
+
+2. cd to `src/frontend` and run `npm install`.
+
+3. Now run `npm start`. This should start the SPA on localhost:3000 and be ready to go for frontend dev.
 
 ## Python
 
