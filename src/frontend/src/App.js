@@ -7,7 +7,9 @@ export default class App extends Component {
 	render() {
 		return(
 			<div className="App">
-				<WidgetHeader/>
+				<div className="section.hero-widget-header">
+					<WidgetHeader/>
+				</div>
 				<Buttons/>
 				<Footer/>
 			</div>

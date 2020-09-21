@@ -5,8 +5,10 @@ export default class WeatherWidget extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: true,
             location: {},
-            current: {}
+            current: {},
+            icons: []
         };
     }
 
@@ -25,8 +27,10 @@ export default class WeatherWidget extends Component {
                     console.log("WeatherStack API returned valid response.");
                     const weather = response.data;
                     this.setState({ 
-                        location: response.data.location,
-                        current: response.data.current
+                        loading: false,
+                        location: weather.location,
+                        current: weather.current,
+                        icons: weather.current.weather_icons
                      });
             });
         } catch(error) {
@@ -39,35 +43,27 @@ export default class WeatherWidget extends Component {
     }
 
     render() {
+        const { loading, location, current, icons } = this.state;
+        const isLoading = "loading...";
+
         return(
             <div className="widget-frame">  
                 <div className="location">
                     <span> { 
-                        JSON.stringify(this.state.location.name) + ', ' +
-                        JSON.stringify(this.state.location.region) + ', ' +
-                        JSON.stringify(this.state.location.country) 
+                        loading ? isLoading:
+                        location.name + ', ' + location.region + ', ' + location.country
                     }
                     </span>
                 </div>
-                <div className="main_left">
-                    <span className="desc">{ 
-                        JSON.stringify(this.state.current.weather_descriptions)
-                    }
-                    </span>
+                <div className="main-left">
+                    <span className="current-icon">{ loading ? isLoading: <img src={String(icons) }/>}</span>
+                    <span className="descriptions">{ loading ? isLoading: current.weather_descriptions }</span>
                 </div>
-                <div className="main_right">
-                    <span className="temp">{ 
-                        JSON.stringify(this.state.current.temperature)+'°c'
-                    }
-                    </span>
-                    <span className="humidity">{ 
-                        JSON.stringify(this.state.current.humidity)
-                    }
-                    </span>
-                    <span className="precip">{ 
-                        JSON.stringify(this.state.current.precip)
-                    }
-                    </span>
+                <div className="divider"/>
+                <div className="main-right">
+                    <span className="humidity">{ loading ? isLoading: current.humidity }</span>
+                    <span className="precipitation">{ loading ? isLoading: current.precip }</span>
+                    <span className="temperature">{ loading ? isLoading: current.temperature +'°c' }</span>
                 </div>
             </div>
         )

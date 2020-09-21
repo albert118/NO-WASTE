@@ -7,19 +7,21 @@ import {
 import {About, Admin, Home } from './djangoPages'
 import NeonClock from './NeonClock';
 import WeatherWidget from './WeatherWidget';
-import SettingsButton from './SettingsButton';
+// import SettingsButton from './SettingsButton';
 
 export class WidgetHeader extends Component {
     render() {
         return(
-                <div className="App-header-box">
-                    <div className="container ">
-                        <div className="App-header-hero">
-                            <NeonClock/>
-                            <WeatherWidget/>
-                        </div>
+            <div className="App-header-box App-header-text">
+                <div className="container">
+                    <div className="App-header-hero-item">
+                        <NeonClock/>
+                    </div>
+                    <div className="App-header-hero-item">
+                        <WeatherWidget/>
                     </div>
                 </div>
+            </div>
         )
     }
 }
