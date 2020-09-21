@@ -12,16 +12,14 @@ import SettingsButton from './SettingsButton';
 export class WidgetHeader extends Component {
     render() {
         return(
-            <header className="App-header-box App-header-text">
-                <div className="App-header-grid">
-                    <div className="grid-item" style={{boxSizing: "border-box"}}>
-                        <NeonClock/>
-                    </div>
-                    <div className="grid-item">
-                        <WeatherWidget/>
+                <div className="App-header-box">
+                    <div className="container ">
+                        <div className="App-header-hero">
+                            <NeonClock/>
+                            <WeatherWidget/>
+                        </div>
                     </div>
                 </div>
-            </header>
         )
     }
 }

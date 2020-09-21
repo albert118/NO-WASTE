@@ -1,9 +1,44 @@
+@media screen and (max-width: 800px);
 .widget-frame {
-  position: relative;
-  margin-top: 5vh;
+  height: 150;
+  width: 300px;
+  position: absolute;
+  border-radius: 10px;
+  right: 15px;
+  top: 14px;
+  background: gray;
+}
+
+.location {
   display: block;
+  height: 40px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.main_left {
+  position: relative;
+  float: none;
+  display: inline-block;
+  width: 137px;
+  height: 137px;
+}
+
+.main_right {
+  position: relative;
+  float: none;
+  display: inline-block;
   right: unset;
   left: unset;
-  right: unset;
-  width: auto;
+  padding-top: 12px;
+  text-align: right;
+  vertical-align: top;
+  width: 150px;
+  height: 137px;
+}
+
+.main_right > span {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 13px;
 }

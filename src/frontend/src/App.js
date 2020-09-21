@@ -6,11 +6,9 @@ import {Footer, WidgetHeader, Buttons } from './components/base'
 export default class App extends Component {
 	render() {
 		return(
-			<div className="App center-children">
-				<div className="wrapper-grid center-children">
-					<WidgetHeader/>
-					<Buttons/>
-				</div>
+			<div className="App">
+				<WidgetHeader/>
+				<Buttons/>
 				<Footer/>
 			</div>
 		)

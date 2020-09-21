@@ -1,12 +1,5 @@
 @import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
 
-.center-children {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(1vh * 1vh);
-}
-
 .App #root {
   padding: 0.1vh;
   margin: 2vh;
@@ -43,35 +36,22 @@
   }
 }
 
-.wrapper-grid {
-  position: relative;
-  margin-top: 2vh;
-  right: unset;
-  left: unset;
-  right: unset;
-  width: auto;
-  display: grid;
-  gap: 5vh;
-  column-gap: 5vh;
-  grid-template-rows: repeat(2, [row]50vh);
-  grid-template-columns: auto;
-}
-
-.grid-item {
-  align-items: right;
-  justify-content: center;
-}
-
-.btn-grid, .App-header-grid, .footer-grid {
+.btn-grid, .footer-grid {
   display: grid;
   row-gap: 1vh;
   column-gap: 2vh;
 }
 
-.App-header-grid {
-  grid-column: 1;
-  grid-row: row;
-  grid-template-columns: 2fr 1fr 1fr;
+.App-header-hero {
+  display: block;
+  max-width: 550px;
+  margin: auto;
+  text-align: center;
+}
+
+.inline-hero {
+  display: inline-block;
+  box-sizing: border-box;
 }
 
 .btn-grid {
