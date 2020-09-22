@@ -27,7 +27,7 @@
 /* Section widget header */
 
 .section.hero-widget-header {
-  padding: 140px 0 160px 0;
+  padding: 140px 0 0 0;
   text-align: center;
   color: black;
   background-position: center;
@@ -39,7 +39,7 @@
   border-radius: 4vh;
   box-shadow: 0 0 10vh 0 gray;
   box-sizing: border-box;
-  margin: 1vh;
+  margin: 5px 280px 5px 280px;
   max-height: 100%;
   min-height: 12vh;
 }
@@ -60,32 +60,35 @@
   text-align: center;
 }
 
-/* Section button grid - main content */
-.btn-grid, .footer-grid {
-  display: grid;
-  row-gap: 1vh;
-  column-gap: 2vh;
+/* Section button flex - main content */
+
+.btn-flex {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 45px 15px 10px 15px;
 }
 
-.btn-grid {
-  grid-column: 1;
-  grid-row: row 2;
-  grid-template-columns: repeat(3, 1fr);
+.btn-inline-block {
+  display: inline-block;
+  width: 100%;
+  height: auto; /* maintain aspect ratio */
 }
 
 
 .btnRecipes > img, .btnPantry > img, .btnHealth > img, .btn
  {
-  margin: 0;
   padding: 0;
-  height: 100%;
+  margin: 0;
+  height: auto;
   width: 100%;
-  border-radius: 15%;
-  justify-content: center;
-  align-content: center;
+  border-radius: 45px;
 }
 
 .btn {
+  margin: 0 20px 0 20px;
+  width: 22%;
+  box-sizing: border-box;
   box-shadow: 0 0 5vh 0 gray;
   background: none;
   background-size: cover;
@@ -106,6 +109,9 @@
 
 /* Section footer - miscal. */
 .footer-grid {
+  display: grid;
+  row-gap: 1vh;
+  column-gap: 2vh;
   grid-template-columns: repeat(3, 1fr);
 }
 
