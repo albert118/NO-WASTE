@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sys
 from django.urls import reverse_lazy
 from pathlib import Path
 import environ
@@ -49,7 +50,6 @@ SITE_ROOT = os.path.join(BASE_DIR, "server")
 
 ################################################################################
 
-
 STATICFILES_DIRS =[
     str(os.path.join(SITE_ROOT, "static")), # site static root
     str(os.path.join(SITE_ROOT, 'bootstrap')), # bootstrap install dir
@@ -81,11 +81,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'easy_thumbnails',
-    'crispy_forms',
-    'debug_toolbar',
-    'health_macros',
-    'django_extensions',
+    'easy_thumbnails', # auto render thumbnails to correct sizes
+    'crispy_forms', # crispy form tags
+    'debug_toolbar', # debug toolbar for analysis of webpages loaded by django in debug mode
+    'health_macros', # the health macro tracker app, designation "HM"
+    'accounts.apps.AccountsConfig', # accounts app for user and admin login management
+    'django_extensions', # extensions for the django manage.py interface
 ]
 
 MIDDLEWARE = [
@@ -179,9 +180,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-LOGIN_REDIRECT_URL = reverse_lazy("profiles:show_self")
+LOGIN_REDIRECT_URL = "dashboard"
 
-LOGIN_URL = reverse_lazy("accounts:login")
+LOGIN_URL = "login"
+
+LOGOUT_URL = "logout"
 
 THUMBNAIL_EXTENSION = "png"  # Default thumbnail extension.
 
