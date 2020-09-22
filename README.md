@@ -43,6 +43,7 @@ ALLOWED_HOSTS=127.0.0.1
 DJANGO_SECRET_KEY=DJANGO_KEY_NOT_REQUIRED_IN_DEV
 WEATHERSTACK_API_KEY=YOUR_API_KEY_HERE
 ```
+	c. populate the django secret key with a random one from [this tool](https://djecrety.ir/).
 
 Import the var's. This changes per OS. Windows should Win+R `sysdm.cpl` and add them then restart the console. Linux and OS X should source the env file.
 
@@ -66,6 +67,10 @@ Import the var's. This changes per OS. Windows should Win+R `sysdm.cpl` and add 
 `make html`
 
 Then open build\index.html with your web browser of choice.
+
+## The Django Secret Key
+
+The Django Secret key is only required for consistency across sessions and Django-based "events". It used by Django backend to create hashes for passwords and session caches.For more information on it read [this](https://stackoverflow.com/questions/7382149/purpose-of-django-setting-secret-key), and [this](https://stackoverflow.com/questions/51657422/are-django-secret-keys-per-instance-or-per-app).
 
 ##  Contributing (using Git)
 
