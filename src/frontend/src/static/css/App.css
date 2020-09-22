@@ -1,25 +1,6 @@
 @import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
 
-.center-children {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(1vh * 1vh);
-}
-
-.App #root {
-  padding: 0.1vh;
-  margin: 2vh;
-  padding: 2vh;
-  border: none;
-  min-height: 50vh;
-  width: auto;
-  background-color: darkgray;
-  text-align: left;
-  font-size: calc(2vh * 1vmin);
-  font-weight: lighter;
-  color:black;
-}
+/* Logo  */
 
 .App-logo {
   pointer-events: none;
@@ -43,35 +24,47 @@
   }
 }
 
-.wrapper-grid {
-  position: relative;
-  margin-top: 2vh;
-  right: unset;
-  left: unset;
-  right: unset;
-  width: auto;
-  display: grid;
-  gap: 5vh;
-  column-gap: 5vh;
-  grid-template-rows: repeat(2, [row]50vh);
-  grid-template-columns: auto;
+/* Section widget header */
+
+.section.hero-widget-header {
+  padding: 140px 0 160px 0;
+  text-align: center;
+  color: black;
+  background-position: center;
+  height: 300px;
 }
 
-.grid-item {
-  align-items: right;
-  justify-content: center;
+.App-header-box {
+  background-color: black;
+  border-radius: 4vh;
+  box-shadow: 0 0 10vh 0 gray;
+  box-sizing: border-box;
+  margin: 1vh;
+  max-height: 100%;
+  min-height: 12vh;
 }
 
-.btn-grid, .App-header-grid, .footer-grid {
+.App-header-text {
+  color: #fff;
+  font-weight: bold;
+}
+
+/* header hero items (widgets) */
+
+.App-header-hero-item {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: auto;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+}
+
+/* Section button grid - main content */
+.btn-grid, .footer-grid {
   display: grid;
   row-gap: 1vh;
   column-gap: 2vh;
-}
-
-.App-header-grid {
-  grid-column: 1;
-  grid-row: row;
-  grid-template-columns: 2fr 1fr 1fr;
 }
 
 .btn-grid {
@@ -80,56 +73,6 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
-.footer-grid {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.App-header-box {
-  margin: 1vh;
-  box-sizing: border-box;
-  min-height: 12vh;
-  max-height: 20vh;
-  background-color: black;
-  box-shadow: 0 0 10vh 0 gray;
-  border-radius: 4vh;
-}
-
-.App-header-text {
-  font-size: calc(2vh * 1.3vmin);
-  font-weight: bold;
-  color: #fff;
-}
-
-.nobull {
-  list-style-type: none;
-}
-
-.footer-text {
-  font-size: calc(1vh * 0.8vmin);
-  text-align: center;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-}
-
-.footer-text a:hover {
-  text-decoration: none;
-}
-
-.authorMsg {
-  display: flex;
-  font-family: 'Times New Roman', Times, serif;
-}
-
-.footer-contact-banner {
-  display: flex;
-  font-family: sans-serif;
-}
-
-.legal {
-  display: flex;
-  font-weight: bold;
-}
 
 .btnRecipes > img, .btnPantry > img, .btnHealth > img, .btn
  {
@@ -159,4 +102,36 @@
 
 .btnHealth {
   grid-column: 3;
+}
+
+/* Section footer - miscal. */
+.footer-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.footer-text {
+  font-size: calc(1vh * 0.8vmin);
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.footer-text a:hover {
+  text-decoration: none;
+}
+
+.authorMsg {
+  display: flex;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.footer-contact-banner {
+  display: flex;
+  font-family: sans-serif;
+}
+
+.legal {
+  display: flex;
+  font-weight: bold;
 }

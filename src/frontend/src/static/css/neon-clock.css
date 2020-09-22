@@ -1,34 +1,4 @@
-@import "../fonts/NeonNeon.css";
-
-/*glow for webkit*/
-@-webkit-keyframes neon1 {
-  from {
-    text-shadow: 0 0 20px #FF1616, 0 0 30px #FF1616, 0 0 30px #000, 0 0 40px #FF1616, 0 0 70px #FF1616, 0 0 80px #FF1616, 0 0 100px #FF1616, 0 0 150px #FF1616;
-  }
-  to {
-    text-shadow: 0 0 3px #ff2323, 0 0 8px #ff2323, 0 0 15px #000, 0 0 20px #ff2323, 0 0 35px #ff2323, 0 0 40px #ff2323, 0 0 50px #ff2323, 0 0 75px #ff2323;
-  }
-}
-
-/*glow for mozilla*/
-@-moz-keyframes neon1 {
-  from {
-    text-shadow: 0 0 20px #FF1616, 0 0 30px #FF1616, 0 0 30px #000, 0 0 40px #FF1616, 0 0 70px #FF1616, 0 0 80px #FF1616, 0 0 100px #FF1616, 0 0 150px #FF1616;
-  }
-  to {
-    text-shadow: 0 0 3px #ff2323, 0 0 8px #ff2323, 0 0 15px #000, 0 0 20px #ff2323, 0 0 35px #ff2323, 0 0 40px #ff2323, 0 0 50px #ff2323, 0 0 75px #ff2323;
-  }
-}
-
-/*glow*/
-@keyframes neon1 {
-  from {
-    text-shadow: 0 0 20px #FF1616, 0 0 30px #FF1616, 0 0 30px #000, 0 0 40px #FF1616, 0 0 70px #FF1616, 0 0 80px #FF1616, 0 0 100px #FF1616, 0 0 150px #FF1616;
-  }
-  to {
-    text-shadow: 0 0 3px #ff2323, 0 0 8px #ff2323, 0 0 15px #000, 0 0 20px #ff2323, 0 0 35px #ff2323, 0 0 40px #ff2323, 0 0 50px #ff2323, 0 0 75px #ff2323;
-  }
-}
+@import "neon-effect.css";
 
 .clock-frame {
   display: flex;
@@ -45,7 +15,7 @@
   text-align: center;
   font-weight: normal;
   font-size: calc(4.5em + 4vmin);
-  max-width: calc(4.5em + 3vmax);/* need to fix this so tick doesnt alter sizing */
+  max-width: calc(4.5em + 3vmax);
   margin: 20px 0 20px 0;
   font-family: 'neoneonregular';
 }
