@@ -272,3 +272,6 @@ scripts/flow/*/.flowconfig
 *.pdf
 todo.*
 todo.md
+
+# pyvenv config
+pyvenv.cfg
