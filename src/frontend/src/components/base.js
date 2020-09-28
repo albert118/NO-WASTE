@@ -7,21 +7,21 @@ import {
 import {About, Admin, Home } from './djangoPages'
 import NeonClock from './NeonClock';
 import WeatherWidget from './WeatherWidget';
-import SettingsButton from './SettingsButton';
+// import SettingsButton from './SettingsButton';
 
 export class WidgetHeader extends Component {
     render() {
         return(
-            <header className="App-header-box App-header-text">
-                <div className="App-header-grid">
-                    <div className="grid-item" style={{boxSizing: "border-box"}}>
+            <div className="App-header-box App-header-text">
+                <div className="container">
+                    <div className="App-header-hero-item">
                         <NeonClock/>
                     </div>
-                    <div className="grid-item">
+                    <div className="App-header-hero-item">
                         <WeatherWidget/>
                     </div>
                 </div>
-            </header>
+            </div>
         )
     }
 }
@@ -53,15 +53,15 @@ export class Footer extends Component {
 
 export class Buttons extends Component {
     render() {
-        return(
-            <div className="btn-grid">
-                <button className="btnRecipes btn">
+        return (
+            <div className="btn-flex">
+                <button className="btn-inline-block btnRecipes btn">
                     <img src="./static/site/img/recipes/1.png" alt="recipes view"/>
                 </button>
-                <button className="btnPantry btn">
+                <button className="btn-inline-block btnPantry btn">
                     <img src="./static/site/img/pantry/1.png" alt="pantry view"/>
                 </button>
-                <button className="btnHealth btn">
+                <button className="btn-inline-block btnHealth btn">
                     <img src="./static/site/img/health/1.png" alt="health view"/>
                 </button>
             </div>
