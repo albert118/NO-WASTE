@@ -34,8 +34,13 @@ Depending on your system **Python may utilise a different command-line handle!**
 
 3. Set up local environement variables
 
-	a. Create `local.env` in `NO-WASTE` directory.
-	b. Create and populate the following fields:
+a. Create `local.env` in `NO-WASTE` directory.
+
+b. Create and populate the following fields:
+
+
+### Windows 
+
 ```
 DEBUG=True
 BASE_DIR=PATH_TO_YOUR_SRC_PROJECT_DIR
@@ -43,15 +48,38 @@ ALLOWED_HOSTS=127.0.0.1
 DJANGO_SECRET_KEY=DJANGO_KEY_NOT_REQUIRED_IN_DEV
 WEATHERSTACK_API_KEY=YOUR_API_KEY_HERE
 ```
-	c. populate the django secret key with a random one from [this tool](https://djecrety.ir/).
+
+### Unix (Linux or OS X)
+
+```
+DEBUG=True
+BASE_DIR=PATH_TO_YOUR_SRC_PROJECT_DIR
+ALLOWED_HOSTS=127.0.0.1
+DJANGO_SECRET_KEY=DJANGO_KEY_NOT_REQUIRED_IN_DEV
+WEATHERSTACK_API_KEY=YOUR_API_KEY_HERE
+```
+
+Note: if using WSL then you base-dir should look like this example,
+e.g. `BASE_DIR=/mnt/d/Coding/NO-WASTE/src/`
+
+c. populate the django secret key with a random one from [this tool](https://djecrety.ir/).
 
 Import the var's. This changes per OS. Windows should Win+R `sysdm.cpl` and add them then restart the console. Linux and OS X should source the env file.
 
 ### Windows
 
-`Scripts\activate`
+Start with `Scripts\activate`:
 *prompt should change to:*
 `(NO-WASTE) C:\NO-WASTE> `
+
+3.  Install the Python dependencies:
+
+`python -m pip install -r requirements.txt --user`
+
+4. Make the docs:
+
+`cd docs`
+`make html`
 
 ### Unix (Linux or OS X)
 
