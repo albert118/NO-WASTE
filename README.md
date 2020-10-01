@@ -3,7 +3,7 @@
 
 # Set-Up (Development)
 
-**Prior to the following set up, please ensure Python (3.6.X) and Java 8 are installed.**
+**Prior to the following set up, please ensure Python (3.6.x or 3.8.x) and Java 8 are installed.**
 
 ## JavaScript and NPM
 
@@ -14,6 +14,15 @@
 3. Now run `npm start`. This should start the SPA on localhost:3000 and be ready to go for frontend dev.
 
 ## Python
+#### Note:
+
+If you wish to set up the production environment for serving this, then further MySQL configuration will be required. By default the mysql_connector is included in python's requirements.txt, **if you are not doing setting up MySQL for production or full database testing, then remove the dep.**
+
+If you are, then on a Linux environment the following install command is requried:
+
+`sudo apt-get install libmysqlclient-dev python-dev`
+
+**If you are not setting up production read on.**
 
 To set-up a development environment for Python, install virtualenv. Pip is the prefered way to install Python packages and is included most Python installations by default. 
 
