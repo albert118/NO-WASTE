@@ -86,12 +86,15 @@ INSTALLED_APPS = [
     'debug_toolbar', # debug toolbar for analysis of webpages loaded by django in debug mode
     'health_macros', # the health macro tracker app, designation "HM"
     'accounts.apps.AccountsConfig', # accounts app for user and admin login management
-    'django_extensions', # extensions for the django manage.py interface
+    'django_extensions',  # extensions for the django manage.py interface
+    'corsheaders', # enable CORS header control
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # just after django.middleware.security.SecurityMiddleware
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -191,3 +194,13 @@ THUMBNAIL_EXTENSION = "png"  # Default thumbnail extension.
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+
+# Cookie, CSRF config and 
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+
+# CORS config
+# change to app.example.com in production settings
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
+CORS_ALLOW_CREDENTIALS = True
+
