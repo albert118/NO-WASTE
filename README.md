@@ -9,6 +9,18 @@
 
 1. Start by setting up the npm development environment. If you only wish to develop Python elements of this project, install npm and the jsdoc dependency to avoid build errors on docs compilation.
 
+Prior to running the rest of frontend set up, ensure npm and Java 8 are installed. For Windows, Choclatey is reccomended.
+
+#### Windows
+
+This includes an npm distribution, run the command via Powershell as admin.
+
+`choco install -y nodejs`
+
+#### Linux
+
+`sudo apt-get install npm nodejs`.
+
 2. cd to `src/frontend` and run `npm install`.
 
 3. Now run `npm start`. This should start the SPA on localhost:3000 and be ready to go for frontend dev.
