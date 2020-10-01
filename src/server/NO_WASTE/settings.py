@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'health_macros',
     'django_extensions',
+    'elasticsearch',
 ]
 
 MIDDLEWARE = [
