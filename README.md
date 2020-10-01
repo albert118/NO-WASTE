@@ -32,7 +32,7 @@ If you wish to set up the production environment for serving this, then further 
 
 If you are, then on a Linux environment the following install command is requried:
 
-`sudo apt-get install libmysqlclient-dev python-dev`
+`sudo apt-get install libmysqlclient-dev python-dev sqlite3`
 
 **If you are not setting up production read on.**
 
@@ -110,13 +110,37 @@ Start with `Scripts\activate`:
 
 `python -m pip install -r requirements.txt --user`
 
-4. Make the docs:
+4. **Optional**: Make the docs:
 
 `cd docs`
 `make html`
 
 Then open build\index.html with your web browser of choice.
 
+5. **Optional**: Production database set up (Linux guide):
+
+This step assumes you're hosting the prod server on some Linux-esque environment. If you're crazy enough to drag Windows and all it's nonsense along, then you can do that - I didn't, I find Linux less likely to cause headaches and be more consistent.
+
+Now to test a simple database setup, open the new sqlite3 CLI and create a simple file for Django to use. Yes the name is important, it can be changed, but this is purely to make sure the db set up and Python environ is correct so far.
+
+```
+$ sqlite3
+>sqlite3 .open db.sqlite3
+>sqlite3 .exit
+$ ls 
+
+accounts  bootstrap db.sqlite3  health_macros manage.py NO_WASTE  static  templates
+
+$ python manage.py reset_db # confirm with 'yes'
+$ python manage.py migrate
+$ python manage.py runserver
+```
+
+If the above doesn't start up the Django server correctly, check the environment set up notes and make sure they are correct. If you get db connection warnings from Django, then double check the BASE_DIR var is correct (I reccomend the abs path as it's reliable between user execution unlike the ~ shortcut). If the error persists, then double check the correct Python version is being utilised - although that should result in an error from manage.py... "But it works on my machine" doesn't mean it can't break on yours. Finnaly, double check the local.env file is sourced correctly, update packages through apt and "turn it off and on again" for good measure. 
+
+*If again it still persists with a db connection error, then contact me (albertferguson118@gmail.com, RE: NO-WASTE db connection setup issue).* Please include the stack-trace.
+
+# Further Notes and Information on the Project
 ## The Django Secret Key
 
 The Django Secret key is only required for consistency across sessions and Django-based "events". It used by Django backend to create hashes for passwords and session caches.For more information on it read [this](https://stackoverflow.com/questions/7382149/purpose-of-django-setting-secret-key), and [this](https://stackoverflow.com/questions/51657422/are-django-secret-keys-per-instance-or-per-app).
