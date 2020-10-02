@@ -198,7 +198,8 @@ INTERNAL_IPS = [
 
 # Cookie, CSRF config and 
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
-
+CSRF_COOKIE_SAMESITE = None # THIS SETTING MUST BE SET FOR CORS AUTH OTHERWISE COOKIE ISNT SENT
+# CSRF_COOKIE = "X-CSRFToken"
 # CORS config
 # change to app.example.com in production settings
 CORS_ORIGIN_WHITELIST = ['http://localhost:3000']

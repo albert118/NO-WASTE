@@ -1,80 +1,76 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
 
-const API_HOST = 'http://127.0.0.1:8000';
-let _csrfToken = null;
+class LoginPage extends Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
 
-export default class LoginPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: false,
-        };
-    }
+    state = {
+        loading: false,
+        API_HOST:'http://127.0.0.1:8000',
+        csrfToken: this.props.cookies.get("csrftoken") || '',
+        _csrfToken: null,
+    };
 
     async componentDidMount() {
-        const config = {
-            xsrfCookieName: 'csrftoken',
-            xsrfHeaderName: 'X-CSRFTOKEN',
-            method: 'post',
-            url: `${API_HOST}/accounts/login/`,
-            withCredentials: true,
-            credentials: 'include',
-            auth: {
-                username: 'admin',
-                password: 'admin'
-            },
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'X-CSRFToken': `${ await this.getCsrfToken() };`,
-            },
-            
+        // TL;DR turns out Axios being based on XMLHttpRequest and Fetch on Request
+        // matters in this specific case. XMLHttpRequest doesn't support mode, credentials and crossdomain
+        // options. This means we can't get Django Authentication middleware to accept
+        // our XMLHttp header token...yikes
+        const auth = {
+            username: 'admin',
+            password: 'admin'
         };
-        await axios.request(config)
-        .then((response) => {
+
+        await this.getCsrfToken();
+        await this.loginRequest(auth);
+    }
+
+    async loginRequest(credentials) {
+        const response = await fetch(`${ this.state.API_HOST }/accounts/login/`, {
+            method: "POST",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'Access-Control-Allow-Origin': '*',
+                'x-csrftoken': this.state._csrfToken,
+                'Authorization': JSON.stringify(credentials),
+            },
+        }).then((response) => {
             console.log(response);
         }).catch((error) => {
             console.log(error);
         });
+        return response;
     }
 
-    async testRequest(method) {
-        const response = await fetch(`${API_HOST}/ping/`, {
-            method: method,
-            headers: (
-                method === 'POST'
-                    ? { 'X-CSRFToken': await this.getCsrfToken() }
-                    : {}
-            ),
-            credentials: 'include',
-        });
-        const data = await response.json();
-        return data.result;
-    }
-
-    async componentWillUnmount() {
+    componentWillUnmount() {
         clearInterval(this.intervalID);
     }
 
     async getCsrfToken() {
-        if (_csrfToken === null) {
-            const response = await fetch(`${API_HOST}/accounts/csrf/`, {
+        const { cookies } = this.props;
+        if (this.state._csrfToken === null) {
+            const response = await fetch(`${ this.state.API_HOST }/accounts/csrf/`, {
                 credentials: 'include',
             });
             const data = await response.json();
-            _csrfToken = data.csrfToken;
+            this.setState({ _csrfToken: data.csrfToken });             // temp
+            cookies.set("csrftoken", data.csrfToken, { path: "/" }); // setting the cookie
+            this.setState({ csrftoken: cookies.get("csrftoken") }); // set the state with the cookie
         }
-        return _csrfToken;
     }
 
     render() {
         return (
             <div className="login-page-frame">
-                {/* <p>Test GET request: {this.state.testGet}</p>
-                <p>Test POST request: {this.state.testPost}</p> */}
+                <p>Test csrf token: { this.state._csrfToken }</p>
             </div>
         )
     }
 }
+
+export default withCookies(LoginPage);

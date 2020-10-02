@@ -9,6 +9,10 @@ from django.http import HttpRequest, Http404, HttpResponse, HttpResponseBadReque
 # csrf and api logic
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_protect
+import json
 
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = "accounts/dashboard.html"
@@ -18,12 +22,10 @@ class LoginView(View):
     allowed_methods = ['post', 'options']
     name = "Login View"
 
+    @method_decorator(never_cache)
+    @method_decorator(csrf_protect)
     def post(self, request, *args, **kwargs):
-        data = {
-            "username": request.POST.get('username', False),
-            "password": request.POST.get('password', False),
-        }
-        
+        data = json.loads(request.headers["Authorization"])
         # authenticate against the db
         user = authenticate(request, username=data["username"], password=data["password"])
         if user is not None:
@@ -38,7 +40,7 @@ class LoginView(View):
     def options(self, request):
         response = HttpResponse()
         response['allow'] = ','.join(self.allowed_methods)
-        return response
+        return response.set_cookie("csfrtoken", get_token(request))
 
 def ChangePassword(request):
     if request.method == "POST":
@@ -59,7 +61,7 @@ def ChangePassword(request):
         # send redirect to frontend page somehow... that'll be fucky
     else:
         # not valid 40x page redirect, "try again?". Again this'll be fucky
-        pass
+        pass    
 
     # no return needed, redirect is the outcome. No JSON response needed
     # probs better to return the request with header for updated paths and HTTP
