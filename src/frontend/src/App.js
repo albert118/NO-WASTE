@@ -3,7 +3,8 @@ import './static/css/App.css'; // main app styling
 import './static/css/bootstrap-grid.css'; // bootstrap styling
 import { withCookies } from 'react-cookie'; // Cookies logic implented
 import { Footer, WidgetHeader, Buttons } from './components/base' // main dashboard components
-import LoginPage from './components/LoginPage' // auth component logic, interfaces with Django backend
+import Login from './components/Login' // auth component logic, interfaces with Django backend
+import Logout from './components/Logout' // auth signout logic
 
 class App extends Component {
 	render() {
@@ -13,7 +14,8 @@ class App extends Component {
 					<WidgetHeader />
 				</div>
 				<Buttons />
-				<LoginPage />
+				<Login />
+				<Logout /> 
 				<Footer />
 			</div>
 		);
