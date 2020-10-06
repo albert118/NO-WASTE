@@ -1,0 +1,25 @@
+@media all and (min-width: 480px) {
+  .Signup {
+    padding: 60px 0;
+  }
+
+  .Signup form {
+    margin: 0 auto;
+    max-width: 600px;
+  }
+
+  .form-row {
+    border-bottom: 1px solid #eee;
+  }
+
+  .aligned label {
+    display: block;
+    padding: 4px 10px 0 0;
+    float: left;
+    line-height: 1;
+  }
+
+  .wide label {
+    width: 200px;
+  }
+}

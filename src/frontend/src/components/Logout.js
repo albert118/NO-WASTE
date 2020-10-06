@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// I think this works...I honestly don't know how to check until 
-// we have a 'auth required' page to attempt to access... I think??
+import { Button } from "react-bootstrap";
 
 export default class Logout extends Component {
     state = {
@@ -9,10 +8,18 @@ export default class Logout extends Component {
         _csrfToken: null,
     };
 
+    handleSubmit = this.handleSubmit.bind(this);
+
+
     async componentDidMount() {
         await this.getCsrfToken();
-        await this.logOutRequest();
     }
+
+
+    componentWillUnmount() {
+        clearInterval(this.intervalID);
+    }
+
 
     async logOutRequest() {
         const response = await fetch(`${ this.state.API_HOST }/accounts/logout/`, {
@@ -32,9 +39,6 @@ export default class Logout extends Component {
         return response;
     }
 
-    componentWillUnmount() {
-        clearInterval(this.intervalID);
-    }
 
     async getCsrfToken() {
         if (this.state._csrfToken === null) {
@@ -47,11 +51,28 @@ export default class Logout extends Component {
         }
     }
 
+    
+    async handleSubmit(event) {
+        event.preventDefault();
+        this.setState({ loading: true });
+        // TODO update these alerts to be more user friendly, especially the errors...
+        try {
+            await this.logOutRequest();
+            alert("You're logged out! See you soon!");
+        } catch (error) {
+            alert(error.message);
+        }
+
+        this.setState({ loading: false });
+    }
+
     render() {
-        return (
-            <div className="login-page-frame">
-                <p>Test csrf token: { this.state._csrfToken }</p>
+        return(
+            <div className="logout-page-frame Logout">
+                <form onSubmit={ this.handleSubmit }>
+                    <Button type="submit" block bsSize="large">Logout</Button>
+                </form>
             </div>
-        )
+        );
     }
 }

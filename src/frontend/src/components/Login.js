@@ -1,11 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import {
+    Button,
+    FormGroup,
+    FormControl,
+    ControlLabel,
+} from "react-bootstrap";
 
-export default class Login extends Component {
+import { withRouter } from "react-router-dom";
+
+import '../static/css/Login.css'
+
+class Login extends Component {
     state = {
+        username: '',
+        password: '',
         loading: false,
         API_HOST:'http://127.0.0.1:8000',
         _csrfToken: null,
     };
+
+    handleUsernameChange = this.handleUsernameChange.bind(this)
+    handlePasswordChange = this.handlePasswordChange.bind(this)
+    handleSubmit = this.handleSubmit.bind(this)
 
     async componentDidMount() {
         // 1/10/2020
@@ -21,14 +37,7 @@ export default class Login extends Component {
         // post() of LoginView(View) and still couldn't. Main issue was
         // Django didn't want to set the cookie in CORS setting (Lax def)
         // setting to NULL solved problem.
-        
-        const auth = {
-            username: 'admin',
-            password: 'admin'
-        };
-
         await this.getCsrfToken();
-        await this.loginRequest(auth);
     }
 
     async loginRequest(credentials) {
@@ -65,11 +74,77 @@ export default class Login extends Component {
         }
     }
 
+    validateForm() {
+        // TODO expand this for URs on password validation requirement.
+        return (
+            this.state.username.length > 0 && this.state.password.length > 0
+        );
+    }
+
+    handleUsernameChange(event) {
+        this.setState({
+            username: event.target.value
+        })
+    }
+
+    handlePasswordChange(event) {
+        this.setState({
+            password: event.target.value
+        })
+    }
+
+    async handleSubmit(event) {
+        event.preventDefault();
+        this.setState({ loading: true });
+        // TODO update these alerts to be more user friendly, especially the errors...
+        try {
+            await this.loginRequest({
+                username: this.state.username,
+                password: this.state.password
+            });
+            alert("You're all logged in! Woohoo!");
+            // example of redirect
+            // https://gist.github.com/elitan/5e4cab413dc201e0598ee05287ee4338
+            this.props.history.push('/'); // redirect to main page
+        } catch (error) {
+            alert(error.message);
+        }
+
+        this.setState({ loading: false });
+    }
+
     render() {
         return (
-            <div className="login-page-frame">
-                <p>Test csrf token: { this.state._csrfToken }</p>
+            <div className="login-page-frame Login">
+                <form onSubmit={ this.handleSubmit }>
+                    <FormGroup controlId="username" bsSize="large">
+                        <ControlLabel>Username</ControlLabel>
+                        <FormControl
+                            autoFocus="username"
+                            type="text"
+                            value={ this.state.username }
+                            onChange={this.handleUsernameChange }
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <ControlLabel>Password</ControlLabel>
+                        <FormControl
+                            type="password"
+                            value={ this.state.password }
+                            onChange={this.handlePasswordChange }
+                        />
+                    </FormGroup>
+                    <Button
+                        type="submit"
+                        block bsSize="large"
+                        disabled={
+                            !this.validateForm()
+                        }
+                    >Login</Button>
+                </form>
             </div>
-        )
+        );
     }
 }
+
+export default withRouter(Login);

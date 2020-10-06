@@ -18,7 +18,7 @@ export class WidgetHeader extends Component {
                         <NeonClock/>
                     </div>
                     <div className="App-header-hero-item">
-                        <WeatherWidget/>
+                        {/* <WeatherWidget/> */}
                     </div>
                 </div>
             </div>

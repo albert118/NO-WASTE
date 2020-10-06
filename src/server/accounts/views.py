@@ -111,16 +111,16 @@ class SignUpView(View):
     signupURL = "accounts/registration/"
 
     def get(self, request, *args, **kwargs):
-        return JsonResponse({ "signUpURL": self.signupURL })
+        return HttpResponse(str(UserCreationForm()))
 
-    @method_decorator(never_cache)
-    @method_decorator(csrf_protect)
     def post(self, request, *args, **kwargs):
-        form = UserCreationForm(request.POST)
+        content = json.loads(request.body.decode("utf-8")) # data comes in body, must be decoded.
+        form = UserCreationForm(content)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
+            form.save()
             return HttpResponse("sign up and login successful", status=200)
+        else:
+            return HttpResponseBadRequest(str(form.errors))
 
     @method_decorator(never_cache)
     def options(self, request):
