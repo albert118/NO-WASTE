@@ -1,35 +1,37 @@
-from django.db import models
+from django.db import models  # DATABASE STUFF
 from datetime import date
+from django.conf import settings
+from django.contrib.auth.models import User
 
-class Author: 
-## DATABASE STUFF
-    id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    name = models.CharField(max_length=100)
-    title = models.CharField(blank=True, max_length=3)
 
-# Create your models here.
-class Recipe: 
-## DATABASE STUFF
-    id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    purchase_date = models.DateField(blank=True, null=True)
-    added_date = models.DateField(default=date.today)
-    total_cost = models.FloatField(blank=True, null=True)
-    purchase_icc = models.CharField(max_length=100)
+class Author(models.Model):
+    name          = models.CharField(max_length=100)
+    title         = models.CharField(blank=False, max_length=30)
+
+
+class Recipe(models.Model):
+    purchase_date = models.DateField(blank=True, null=False, default=date.today())
+    added_date    = models.DateField(default=date.today())
+    total_cost    = models.FloatField(blank=True, null=False, default=0)
+    purchase_icc  = models.CharField(max_length=100) # -Albert MORE DESCRIPTIVE NAME?
     num_items = models.IntegerField(default=0)
-
-class Item: 
-    id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    expiry_date =  models.DateField(blank=True, null=True)
-    added_date =  models.DateField(default=date.today)
-    quantity =  models.IntegerField(default=0)
-    description = models.CharField(blank=True, max_length=100, null=True)
-    cost = models.FloatField(blank=True, null=True)
-    receipt_id = models.ForeignKey(on_delete=models.deletion.CASCADE, to='inventory.Recipe')
+    # -Albert NEEDS ITEMS TO REFERENCE
 
 
-class Inventory:
-    id = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    num_items = models.IntegerField(blank=True, default=0, null=True)
-    is_empty = models.BooleanField(default=1, null=False, blank=False)
-    item_id = models.ForeignKey(on_delete=models.deletion.CASCADE, to='inventory.Item')
-    user_id = models.ForeignKey(on_delete=models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)
+class Item(models.Model):
+    expiry_date   = models.DateField(blank=False)
+    added_date    = models.DateField(default=date.today())
+    quantity      = models.IntegerField(default=1, blank=True, null=False)
+    description   = models.CharField(blank=True, max_length=100, null=False, default="")
+    cost          = models.FloatField(default=0, blank=True, null=False)
+    receipt_id = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    
+    # -Albert needs a Meta class for a name, otherwise the name on the form 
+    # shows up as Item Object 1
+
+
+class Inventory(models.Model):
+    num_items     = models.IntegerField(blank=True, default=0, null=True)
+    is_empty      = models.BooleanField(default=1, null=False, blank=False)
+    item_id       = models.ForeignKey(Item, on_delete=models.CASCADE)
+    user_id       = models.ForeignKey(User, on_delete=models.CASCADE)
