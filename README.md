@@ -70,6 +70,10 @@ DJANGO_SECRET_KEY=DJANGO_KEY_NOT_REQUIRED_IN_DEV
 WEATHERSTACK_API_KEY=YOUR_API_KEY_HERE
 ```
 
+Add the environment variables,
+
+`for /F %A in (local.env) do SET %A`
+
 ### Unix (Linux or OS X)
 
 ```
