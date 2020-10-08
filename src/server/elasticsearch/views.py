@@ -7,17 +7,18 @@ from elasticsearch import Elasticsearch
 
 # Create your views here.
 
+es = Elasticsearch()
 
-def ingest(request):
+
+def ElasticIngest(request):
+   """
+    Sample Request for getting data out of ElasticSearch.
     """
-    Author: Jayden Lee
-    Example: Just checking an example response. 
-    """
-    es = Elasticsearch()
+    pass
 
 
 
-def search(request):
+def ElasticRequest(request):
     """
     Author: 
     Jayden Lee
