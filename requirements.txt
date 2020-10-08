@@ -21,7 +21,8 @@ django-excel-base==1.0.4  # via -r requirements.in, django-excel-response2
 django-excel-response2==3.0.2  # via -r requirements.in, django-admin
 django-extensions==3.0.7  # via -r requirements.in
 django-six==1.0.4         # via -r requirements.in, django-excel-response2
-django==3.0.8             # via -r requirements.in, django-authtools, django-braces, django-cors-headers, django-debug-toolbar, easy-thumbnails
+django==3.0.8             # via -r requirements.in, django-authtools, django-braces, django-cors-headers, django-debug-toolbar, djangorestframework, easy-thumbnails
+djangorestframework==3.12.1  # via -r requirements.in
 docutils==0.16            # via -r requirements.in, sphinx, sphinx-js
 easy-thumbnails==2.7      # via -r requirements.in
 environs==7.3.0           # via -r requirements.in
