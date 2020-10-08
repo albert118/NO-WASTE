@@ -1,9 +1,77 @@
+@import "neon-effect.css";
+
 .widget-frame {
+  position: absolute;
+  top: 0;
+  right: 350px;
+  display: inline-block;
+  margin: 0 auto;
+  width: 325px;
+  height: 200px;
+}
+
+.location {
   position: relative;
-  margin-top: 5vh;
+  font-size: 0.7em;
   display: block;
-  right: unset;
-  left: unset;
-  right: unset;
-  width: auto;
+  height: 40px;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  top: 180px;
+}
+
+.divider {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  bottom: 10%;
+  padding: 0 10px 0 1px;
+  border-left: 3px solid white;
+}
+
+.main-left .main-right {
+  width: 50%;
+  height: 100%;
+  margin: 0px 2px 0px 2px;
+}
+
+.main-left {
+  position: relative;
+  right: 40px;
+  margin-left: 10px;
+}
+
+.main-left > span {
+  display: block;
+  left: 25px;
+  top: 93px;
+}
+
+.main-right {
+  position: relative;
+  text-align: left;
+  right: -180px;
+  top: -100px;
+  margin-right: 10px;
+  padding-top: 12px;
+}
+
+.main-right > span {
+  width: 100%;
+  float: right;
+  clear: right;
+}
+
+.main-right > span.temperature {
+  font-weight: normal;
+  font-size: calc(3em + 2vmax);
+  font-family: 'neoneonregular';
+  color: #FFE045;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+  animation: neon1 1.5s ease-in-out infinite alternate;
 }
