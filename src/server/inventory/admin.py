@@ -1,11 +1,22 @@
 from django.contrib import admin
+from .models import Recipe, Item, Inventory, Author
 
-# Register your models here.
 
-## ADMIN VIEW OF PAGE
-
-from inventory.models import Author
-
+@admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     pass
-admin.site.register(Author, AuthorAdmin)
+
+
+@admin.register(Recipe)
+class RecipeAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Item)
+class ItemAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Inventory)
+class InventoryAdmin(admin.ModelAdmin):
+    pass
