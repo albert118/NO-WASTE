@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import "../static/css/settings-button.css";
-import "../static/css/App.css";
+import "../static/css/settingsButton.css";
 
 
 export default class SettingsButton extends Component {
@@ -9,7 +8,7 @@ export default class SettingsButton extends Component {
         return(
             <div className="settings-btn-frame" style={{justifyContent: "right"}}>
                 <button className="settings-btn btn">
-                    <img className="App-logo" src="./static/site/img/logo_alt.png"></img>
+                    <img src="./static/site/img/settings.png"></img>
                 </button>
             </div>
         )

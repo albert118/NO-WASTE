@@ -1,6 +1,15 @@
 @import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
 
 /* Logo  */
+:root {
+  background-color: #e7e7e7;
+}
+
+.App {
+  background-color: #e7e7e7;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
 
 .App-logo {
   pointer-events: none;
@@ -24,69 +33,15 @@
   }
 }
 
-/* Section widget header */
-
-.section.hero-widget-header {
-  padding: 140px 0 0 0;
-  text-align: center;
-  color: black;
-  background-position: center;
-  height: 300px;
-}
-
-.App-header-box {
-  background-color: black;
-  border-radius: 4vh;
-  box-shadow: 0 0 10vh 0 gray;
-  box-sizing: border-box;
-  margin: 5px 280px 5px 280px;
-  max-height: 100%;
-  min-height: 12vh;
-}
-
-.App-header-text {
-  color: #fff;
-  font-weight: bold;
-}
-
-/* header hero items (widgets) */
-
-.App-header-hero-item {
-  box-sizing: border-box;
-  display: inline-block;
-  margin: auto;
-  width: 50%;
-  height: 100%;
-  text-align: center;
-}
-
-/* Section button flex - main content */
-
-.btn-flex {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  margin: 45px 15px 10px 15px;
-}
-
-.btn-inline-block {
-  display: inline-block;
-  width: 100%;
-  height: auto; /* maintain aspect ratio */
-}
-
-
-.btnRecipes > img, .btnPantry > img, .btnHealth > img, .btn
- {
-  padding: 0;
-  margin: 0;
-  height: auto;
-  width: 100%;
-  border-radius: 45px;
+.center {
+  position: absolute;
+  right: 50%;
+  left: 50%;
 }
 
 .btn {
-  margin: 0 20px 0 20px;
+  margin: 0 1vw 0 1vw;
+  height: auto;
   width: 22%;
   box-sizing: border-box;
   box-shadow: 0 0 5vh 0 gray;
@@ -95,17 +50,47 @@
   border: none;
 }
 
-.btnRecipes {
-  grid-column: 1;
+section .dashboard-grid {
+  margin: auto;
+
 }
 
-.btnPantry {
-  grid-column: 2;
+section.hero {
+  height: 100%;
+  width: auto;
 }
 
-.btnHealth {
-  grid-column: 3;
+section.content {
+  height: 100%;
+  width: auto;
 }
+
+.dashboard-grid {
+  margin: auto;
+  height: auto;
+  width: 90%;
+  padding: 2vh 1vw 2vh 1vw;
+  display: grid;
+  grid-template-rows: [heroMain] 20% [contentMain] 80%;
+  grid-template-columns: 100%;
+  row-gap: 10vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.grid-item {
+  align-self: stretch;
+  justify-self: center;
+}
+
+.content-main {
+  grid-row: contentMain;
+}
+
+.hero-main {
+  grid-row: heroMain;
+}
+
 
 /* Section footer - miscal. */
 .footer-grid {

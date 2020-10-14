@@ -1,30 +1,4 @@
 import React, { Component } from 'react';
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-  } from "react-router-dom";
-import {About, Admin, Home } from './djangoPages'
-import NeonClock from './NeonClock';
-import WeatherWidget from './WeatherWidget';
-// import SettingsButton from './SettingsButton';
-
-export class WidgetHeader extends Component {
-    render() {
-        return(
-            <div className="App-header-box App-header-text">
-                <div className="container">
-                    <div className="App-header-hero-item">
-                        <NeonClock/>
-                    </div>
-                    <div className="App-header-hero-item">
-                        <WeatherWidget/>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-}
 
 export class Footer extends Component {
     render() {
@@ -51,41 +25,11 @@ export class Footer extends Component {
     }
 }
 
-export class Buttons extends Component {
+export class Header extends Component {
     render() {
         return (
-            <div className="btn-flex">
-                <button className="btn-inline-block btnRecipes btn">
-                    <img src="./static/site/img/recipes/1.png" alt="recipes view"/>
-                </button>
-                <button className="btn-inline-block btnPantry btn">
-                    <img src="./static/site/img/pantry/1.png" alt="pantry view"/>
-                </button>
-                <button className="btn-inline-block btnHealth btn">
-                    <img src="./static/site/img/health/1.png" alt="health view"/>
-                </button>
-            </div>
-        )
-    }
-}
-
-export class LinkingDemo extends Component {
-    render() {
-        return(
-            <div className="container">
-                <Router>
-                    <Switch>
-                        <Route exact path="/admin">
-                            <Admin />
-                        </Route>
-                        <Route exact path="/about">
-                            <About />
-                        </Route>
-                        <Route exact path="">
-                            <Home />
-                        </Route>
-                    </Switch>
-                </Router>
+            <div>
+                <p>NO HEADER</p>
             </div>
         )
     }
