@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 export default class Logout extends Component {
     state = {
         loading: false,
-        API_HOST:'http://127.0.0.1:8000',
+        API_HOST:'http://localhost:8000',
         _csrfToken: null,
     };
 
@@ -62,7 +62,7 @@ export default class Logout extends Component {
         } catch (error) {
             alert(error.message);
         }
-
+        this.props.history.push('/login'); // redirect to login page
         this.setState({ loading: false });
     }
 
