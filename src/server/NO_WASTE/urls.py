@@ -12,7 +12,8 @@ admin.site.site_header = "No-Waste Administration"
 urlpatterns = [
     path("", views.HomePage.as_view(), name="home"),
     path("about/", views.AboutPage.as_view(), name="about"),
-    path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls, name="admin"),
+    path("accounts/", include('accounts.urls')),
 ] 
 # User-uploaded files like profile pics need to be served in development
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

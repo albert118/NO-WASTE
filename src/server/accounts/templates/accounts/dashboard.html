@@ -1,0 +1,26 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<div class="limiter">
+    <div class="container-100"
+        style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url({% static 'accounts/images/bg-01.jpg' %});">
+        <div class="col-md-4">
+            <div class="text-white">
+                <img src="{% static 'accounts/images/profile.jpg' %}" class="icon" alt="profile-img" srcset="">
+            </div>
+        </div>
+
+        <div class="text-white">
+            Hi {{request.user.username }} <br>
+            <a class="text-white" href="{% url 'logout' %}">logout</a>
+        </div>
+
+
+    </div>
+</div>
+
+
+{% endblock content %}
