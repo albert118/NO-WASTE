@@ -1,10 +1,9 @@
 // React
 import React, { Component } from 'react';
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link,
+  Switch,
+  Router,
+  Link
 } from 'react-router-dom';
 
 // styling
@@ -15,11 +14,9 @@ import './static/css/bootstrap-grid.css'; // bootstrap styling
 import { withCookies } from 'react-cookie'; // Cookies logic implented
 
 // custom components
-import {
-	Footer,
-	WidgetHeader,
-	Buttons
-} from './components/base' // main dashboard components
+import { Footer } from './components/base';
+import { HeroHeader } from './components/heroHeader';
+import { Buttons } from './components/buttons';
 import Login from './components/Login' // auth component logic, interfaces with Django backend
 import Logout from './components/Logout' // auth signout logic
 import SignUp from './components/SignUp' // auth signup logic
@@ -27,40 +24,29 @@ import SignUp from './components/SignUp' // auth signup logic
 class App extends Component {
 	render() {
 		return (
-			<Router>
-				<div className="App">
-					<nav>
-						<ul>
-							<li>
-								<Link to="/">Home Dashboard</Link>
-							</li>
-							<li>
-								<Link to="/login">Login or Signup</Link>
-							</li>
-						</ul>
-					</nav>
-					<Switch>
-						{/* Excellent answer on rendering a / route */}
-						{/* https://stackoverflow.com/a/44292410/9505707 */}
-						<Route exact path="/" component={ HomeDashboard } />
-						<Route path="/login" component={LoginOrSignUp } />
-					</Switch>
-				</div>
-				<Footer />
-			</Router>	
-		);
-	}
-}
-
-
-class HomeDashboard extends Component {
-	render() {
-		return (
-			<div className="section.hero-widget-header">
-				<WidgetHeader />
-				<Logout />
-				<Buttons />	
-			</div>
+        <Router>
+            <div className="App">
+                <div className="dashboard-grid">
+					          <section className="hero">
+						            <div className="grid-item hero-main">
+							              <HeroHeader />
+						            </div>
+					         </section>
+					          <section className="content">
+						            <div className="grid-item content-main">
+							              <Buttons />
+					            	</div>
+					          </section>
+				       </div>
+				       <Footer />
+					     <Switch>
+						     {/* Excellent answer on rendering a / route */}
+						     {/* https://stackoverflow.com/a/44292410/9505707 */}
+						     <Route exact path="/" />
+						     <Route path="/login" component={LoginOrSignUp} />
+					      </Switch>
+              </div>
+        </Router>
 		);
 	}
 }

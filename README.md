@@ -7,7 +7,11 @@
 
 ## JavaScript and NPM
 
-Start by setting up the npm development environment. If you only wish to develop Python elements of this project, install npm and the jsdoc dependency to avoid build errors on docs compilation.
+1. Start by setting up the npm development environment. If you only wish to develop Python elements of this project, install npm and the jsdoc dependency to avoid build errors on docs compilation.
+
+2. cd to `src/frontend` and run `npm install`.
+
+3. Now run `npm start`. This should start the SPA on localhost:3000 and be ready to go for frontend dev.
 
 ## Python
 
@@ -39,6 +43,7 @@ ALLOWED_HOSTS=127.0.0.1
 DJANGO_SECRET_KEY=DJANGO_KEY_NOT_REQUIRED_IN_DEV
 WEATHERSTACK_API_KEY=YOUR_API_KEY_HERE
 ```
+	c. populate the django secret key with a random one from [this tool](https://djecrety.ir/).
 
 Import the var's. This changes per OS. Windows should Win+R `sysdm.cpl` and add them then restart the console. Linux and OS X should source the env file.
 
@@ -63,11 +68,15 @@ Import the var's. This changes per OS. Windows should Win+R `sysdm.cpl` and add 
 
 Then open build\index.html with your web browser of choice.
 
+## The Django Secret Key
+
+The Django Secret key is only required for consistency across sessions and Django-based "events". It used by Django backend to create hashes for passwords and session caches.For more information on it read [this](https://stackoverflow.com/questions/7382149/purpose-of-django-setting-secret-key), and [this](https://stackoverflow.com/questions/51657422/are-django-secret-keys-per-instance-or-per-app).
+
 ##  Contributing (using Git)
 
 As is standard, master is protected and cannot be pushed to directly. All features must pass unit and integration testing in the develop staging branch prior to being commited to master.
 
-Working locally via the command line is required. If you're not familiar then checkout the guide on the Git site to basic [branching and merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging), as well as [this](https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners) quick guide to basic repo work. Lastly, to avoid extraneous git commit messages, follow [this](https://medium.com/@slamflipstrom/a-beginners-guide-to-squashing-commits-with-git-rebase-8185cf6e62ec) Medium tutorial for a guide on squashing commits together. The result of that should be a file like the lines below, where all commits are combined into one commit per feature prior to merges into master or develop.
+Working locally via the command line is required. If you're not familiar then checkout the guide on the Git site to basic [branching and merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging), as well as [this](https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners) quick guide to basic repo work. Lastly, to avoid extraneous git commit messages, follow [this](https://medium.com/@slamflipstrom/a-beginners-guide-to-squashing-commits-with-git-rebase-8185cf6e62ec) Medium tutorial for a guide on squashing commits together. The result of that should be a file like the lines below, where all commits are combined into one commit per feature prior to merges into master or develop. **This rebasing process must be done before pushing to remote!!** Check the last SHA with `git cherry -v --abbrev=5`.
 
 ```
 reword 60042c8 Feature X: Working! Adds X, Y and Z to functionality of feature.
