@@ -64,6 +64,19 @@ section.content {
   width: auto;
 }
 
+.btn {
+  margin: auto;
+  width: 100%;
+  box-shadow: 0 0 5vh 0 gray;
+  background: none;
+  background-size: cover;
+  align-content: center;
+  justify-content: stretch;
+  border: none;
+  border-radius: 0;
+
+}
+
 .dashboard-grid {
   margin: auto;
   height: auto;

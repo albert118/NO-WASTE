@@ -1,4 +1,9 @@
+// https://dev.to/rafacdomin/creating-floating-label-placeholder-for-input-with-reactjs-4m1f for floating labels
+// https://github.com/ihor/react-styled-floating-label git repo for floating labels
 import React, { Component } from "react";
+
+import { Link } from 'react-router';
+
 import {
     Button,
     FormGroup,
@@ -8,7 +13,9 @@ import {
 
 import { withRouter } from "react-router-dom";
 
-import '../static/css/Login.css'
+import Logo from '../static/site/img/logonew.svg';
+
+import style from '../static/css/Login.css';
 
 class Login extends Component {
     state = {
@@ -25,7 +32,7 @@ class Login extends Component {
 
     async componentDidMount() {
         // 1/10/2020
-        // TL; DR turns out Axios being based on XMLHttpRequest and Fetch on Request
+        // TL; DR turns out Axios being based on XzMLHttpRequest and Fetch on Request
         // matters in this specific case. XMLHttpRequest doesn't support mode, credentials and crossdomain
         // options. This means we can't get Django Authentication middleware to accept
         // our XMLHttp header token...yikes
@@ -116,9 +123,15 @@ class Login extends Component {
     render() {
         return (
             <div className="login-page-frame Login">
+                <header>
+                    <div className="big-logo">
+                        <img src={Logo} />
+                    </div>
+                    <h1 className="title">WELCOME</h1>
+                </header>
                 <form onSubmit={ this.handleSubmit }>
                     <FormGroup controlId="username" bsSize="large">
-                        <ControlLabel>Username</ControlLabel>
+                        <ControlLabel>USERNAME</ControlLabel>
                         <FormControl
                             autoFocus="username"
                             type="text"
@@ -127,7 +140,7 @@ class Login extends Component {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <ControlLabel>Password</ControlLabel>
+                        <ControlLabel>PASSWORD</ControlLabel>
                         <FormControl
                             type="password"
                             value={ this.state.password }
@@ -140,8 +153,12 @@ class Login extends Component {
                         disabled={
                             !this.validateForm()
                         }
-                    >Login</Button>
+                    >LOGIN</Button>
                 </form>
+                     <p className="subtext"> Not a member? link text->Sign Up</p>
+{/*add link to sign up page here*/}
+                
+             
             </div>
         );
     }

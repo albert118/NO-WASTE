@@ -8,8 +8,9 @@ import {
 
 import { withRouter } from "react-router-dom";
 
+// styles
 import '../static/css/Signup.css'
-
+import Logo from '../static/site/img/logonew.svg';
 class Login extends Component {
     state = {
         username: '',
@@ -153,9 +154,15 @@ class Login extends Component {
     render() {
         return (
             <div className="signup-page-frame Signup">
+                <header>
+                    <div className="big-logo">
+                        <img src={Logo} />
+                    </div>
+                    <h1 className="title">WELCOME - SIGN UP NOW!</h1>
+                </header>
                 <form onSubmit={this.handleSubmit} name="signupForm">
                     <FormGroup controlId="username" bsSize="large">
-                        <ControlLabel>Username</ControlLabel>
+                        <ControlLabel>USERNAME</ControlLabel>
                         <FormControl
                             autoFocus="username"
                             type="email"
@@ -164,7 +171,7 @@ class Login extends Component {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <ControlLabel>Password</ControlLabel>
+                        <ControlLabel>PASSWORD</ControlLabel>
                         <FormControl
                             type="password"
                             value={this.state.password}
@@ -172,7 +179,7 @@ class Login extends Component {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <ControlLabel>Password Confirm</ControlLabel>
+                        <ControlLabel>PASSWORD CONFIRM</ControlLabel>
                         <FormControl
                             type="password"
                             value={this.state.handlePasswordChange}
@@ -180,7 +187,7 @@ class Login extends Component {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <ControlLabel>Date of Birth DUMMY VAR RN</ControlLabel>
+                        <ControlLabel>DOB DUMMY VAR RN</ControlLabel>
                         <FormControl
                             type="date"
                             value={this.state.dob}
