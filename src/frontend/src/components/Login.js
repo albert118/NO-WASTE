@@ -1,3 +1,5 @@
+// https://dev.to/rafacdomin/creating-floating-label-placeholder-for-input-with-reactjs-4m1f for floating labels
+// https://github.com/ihor/react-styled-floating-label git repo for floating labels
 import React, { Component } from "react";
 import {
     Button,
@@ -8,7 +10,9 @@ import {
 
 import { withRouter } from "react-router-dom";
 
-import '../static/css/Login.css'
+import Logo from '../static/site/img/logonew.svg';
+
+import '../static/css/Login.css';
 
 class Login extends Component {
     state = {
@@ -112,13 +116,15 @@ class Login extends Component {
 
         this.setState({ loading: false });
     }
-
+ 
     render() {
         return (
             <div className="login-page-frame Login">
                 <form onSubmit={ this.handleSubmit }>
+                    <img src={Logo} class="center" />
+                    <p>WELCOME</p>
                     <FormGroup controlId="username" bsSize="large">
-                        <ControlLabel>Username</ControlLabel>
+                        <ControlLabel>USERNAME</ControlLabel>
                         <FormControl
                             autoFocus="username"
                             type="text"
@@ -127,7 +133,7 @@ class Login extends Component {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <ControlLabel>Password</ControlLabel>
+                        <ControlLabel>PASSWORD</ControlLabel>
                         <FormControl
                             type="password"
                             value={ this.state.password }
@@ -140,7 +146,7 @@ class Login extends Component {
                         disabled={
                             !this.validateForm()
                         }
-                    >Login</Button>
+                    >LOGIN</Button>
                 </form>
             </div>
         );

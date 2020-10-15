@@ -22,7 +22,7 @@ import {
 } from './components/base' // main dashboard components
 import Login from './components/Login' // auth component logic, interfaces with Django backend
 import Logout from './components/Logout' // auth signout logic
-import SignUp from './components/SignUp' // auth signup logic
+import SignUp from './components/signUp' // auth signup logic
 
 class App extends Component {
 	render() {

@@ -89,7 +89,13 @@
   box-shadow: 0 0 5vh 0 gray;
   background: none;
   background-size: cover;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
   border: none;
+  width: 320px; 
+  height: 30px;
+  border-radius: 0;
 }
 
 .btnRecipes {
