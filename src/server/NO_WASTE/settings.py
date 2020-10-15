@@ -89,6 +89,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'inventory',
     'elasticsearch',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

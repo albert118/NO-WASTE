@@ -1,18 +1,14 @@
-from django.views import generic, View
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.urls import get_resolver
-from .models import Author
-from django.core.serializers.json import DjangoJSONEncoder
+from django.urls import include, path
+from rest_framework import routers
+from inventory.views import views
 
-### Probably need to use django rest framework as a new pip framework. 
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
 
-
-# Create your views here.
-
-
-def returnAuthor(request):
-    # authors = 
-
-
-## HTTP STUFF
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
+urlpatterns = [
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+]

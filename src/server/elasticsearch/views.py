@@ -3,11 +3,11 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.urls import get_resolver
 from . import models
-from elasticsearch import Elasticsearch 
+from elasticsearch import Elasticsearch
+from rest_framework.decorators import api_view
+
 
 # Create your views here.
-
-es = Elasticsearch()
 
 
 def ElasticIngest(request):
@@ -16,13 +16,12 @@ def ElasticIngest(request):
     """
     pass
 
-
-
 def ElasticRequest(request):
     """
     Author: 
     Jayden Lee
 
     """
+    pass
 
     

@@ -17,6 +17,3 @@ def ElasticIngest(self, parameter_list):
     Sample ingest for getting data into ElasticSearch 
     """
     pass
-
-
-
