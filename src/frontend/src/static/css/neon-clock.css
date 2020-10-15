@@ -31,11 +31,4 @@
   animation: neon1 1.5s ease-in-out infinite alternate;
 }
 
-.clock-time > a:hover {
-  /* color: #FF1177; */
-  -webkit-animation: none;
-  -moz-animation: none;
-  animation: none;
-}
-
   

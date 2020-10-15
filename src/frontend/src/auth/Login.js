@@ -19,10 +19,10 @@ import style from '../static/css/Login.css';
 
 class Login extends Component {
     state = {
-        username: '',
-        password: '',
+        username: 'username@site.com',
+        password: 'SECRET! Password1234',
         loading: false,
-        API_HOST:'http://127.0.0.1:8000',
+        API_HOST:'http://localhost:8000',
         _csrfToken: null,
     };
 
@@ -123,9 +123,13 @@ class Login extends Component {
     render() {
         return (
             <div className="login-page-frame Login">
+                <header>
+                    <div className="big-logo">
+                        <img src={Logo} />
+                    </div>
+                    <h1 className="title">WELCOME</h1>
+                </header>
                 <form onSubmit={ this.handleSubmit }>
-                    <img src={Logo} class="center" />
-                    <p className="title">WELCOME</p>
                     <FormGroup controlId="username" bsSize="large">
                         <ControlLabel>USERNAME</ControlLabel>
                         <FormControl

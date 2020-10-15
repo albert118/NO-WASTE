@@ -3,8 +3,8 @@
 @media all and (min-width: 480px){
 
   .Login {
-    padding: 60px 0;
-    margin-top: 100px;
+    padding: 2vh;
+    width: 100%;
     background-color: #cfcfcf;
     color: black; 
     text-align: center;
@@ -16,7 +16,8 @@
   }
 
   .Login form {
-    margin: 0 auto;
+    margin: auto;
+    width: 100%;
     max-width: 320px;  
   }
 

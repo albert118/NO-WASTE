@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import DisplayMapClass from './DisplayMapClass';
+import DisplayMapClass from '../components/DisplayMapClass';
 
 export function Home() {
 	const apiURL = "http://127.0.0.1:8000/";

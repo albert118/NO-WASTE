@@ -1,0 +1,49 @@
+
+.btn-grid {
+  width: 100%;
+  margin: auto;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  max-height: 60vh;
+  min-height: 20vh;
+  display: grid;
+  justify-items: center;
+  align-items: stretch;
+  grid-template-rows: [buttons] 90%;
+  grid-template-columns: 
+    [recipes] 33%
+    [pantry] 33%
+    [health] 33%;
+  column-gap: 1vw
+}
+
+.btn-grid-item {
+  align-self: center;
+  justify-self: center;
+  cursor: pointer;
+  grid-row: buttons;
+  margin: auto;
+  width: 100%;
+  height: 50vh;
+  border-radius: 5vh;
+  box-shadow: 0 0 2vh grey;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.btnRecipes {
+  grid-column: recipes;
+  background-image: url("/static/site/img/recipes/1.png");
+  
+}
+
+.btnPantry {
+  grid-column: pantry;
+  background-image: url("/static/site/img/pantry/1.png");
+}
+
+.btnHealth {
+  grid-column: health;
+  background-image: url("/static/site/img/health/1.png");
+}

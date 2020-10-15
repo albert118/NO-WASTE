@@ -1,10 +1,9 @@
 // React
 import React, { Component } from 'react';
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link,
+    Switch,
+    BrowserRouter as Router,
+    Route
 } from 'react-router-dom';
 
 // styling
@@ -14,68 +13,57 @@ import './static/css/bootstrap-grid.css'; // bootstrap styling
 // cookies
 import { withCookies } from 'react-cookie'; // Cookies logic implented
 
-// custom components
-import {
-	Footer,
-	WidgetHeader,
-	Buttons
-} from './components/base' // main dashboard components
-import Login from './components/Login' // auth component logic, interfaces with Django backend
-import Logout from './components/Logout' // auth signout logic
-import SignUp from './components/signUp' // auth signup logic
+// child components and elements
+import { Footer } from './components/base';
+
+// content components
+import { HeroHeader } from './content/heroHeader';
+import Buttons from './content/buttons';
+import Pantry from './content/pantry' // pantry view
+
+// auth 
+import Login from './auth/Login'   // auth component logic, interfaces with Django backend
+import Logout from './auth/Logout' // auth signout logic
+import SignUp from './auth/SignUp' // auth signup logic
 
 class App extends Component {
 	render() {
 		return (
-			<Router>
-				<div className="App">
-					<nav>
-						<ul>
-							<li>
-								<Link to="/">Home Dashboard</Link>
-							</li>
-							<li>
-								<Link to="/login">Login or Signup</Link>
-							</li>
-						</ul>
-					</nav>
-					<Switch>
-						{/* Excellent answer on rendering a / route */}
-						{/* https://stackoverflow.com/a/44292410/9505707 */}
-						<Route exact path="/" component={ HomeDashboard } />
-						<Route path="/login" component={LoginOrSignUp } />
-					</Switch>
-				</div>
-				<Footer />
-			</Router>	
+            <Router>
+                <div className="App">
+                    <Switch>
+                        {/* Excellent answer on rendering a / route */}
+                        {/* https://stackoverflow.com/a/44292410/9505707 */}
+                        <Route exact path="/" component={HomeDashboard} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/logout" component={Logout} />
+                        <Route path="/signup" component={SignUp} />
+                        <Route path="/pantry" component={Pantry} />
+                    </Switch>
+                    <Footer />
+                </div>
+            </Router>
 		);
 	}
 }
-
 
 class HomeDashboard extends Component {
-	render() {
-		return (
-			<div className="section.hero-widget-header">
-				<WidgetHeader />
-				<Logout />
-				<Buttons />	
-			</div>
-		);
-	}
-}
-
-
-class LoginOrSignUp extends Component {
-	render() {
-		return (
-			<div>
-				<SignUp />
-				<Login />
-			</div>
-			
-		);
-	}
+    render() {
+        return (
+            <div className="dashboard-grid">
+                <section className="hero">
+                    <div className="grid-item hero-main">
+                        <HeroHeader />
+                    </div>
+                </section>
+                <section className="content">
+                    <div className="grid-item content-main">
+                        <Buttons />
+                    </div>
+                </section>
+            </div>
+        );
+    }
 }
 
 

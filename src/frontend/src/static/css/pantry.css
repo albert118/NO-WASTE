@@ -1,0 +1,63 @@
+@import "./neon-effect.css";
+
+h1 {
+  color: white;
+  font-family: 'neoneonregular';
+}
+
+.center {
+  text-align: center;
+  text-justify: stretch;
+  width: 100%;
+  margin: auto;
+}
+
+.pantry {
+  padding: 1vh 1vw 1vh 1vw;
+}
+
+.header-custom-view {
+  background-color: black;
+  border-radius: 5vh;
+  box-shadow: 0 0 10vh 0 gray;
+  box-sizing: border-box;
+  max-height: 25vh;
+  min-height: 10vh;
+}
+
+.header-grid {
+  display: grid;
+  grid-template-rows: [headerCustomItems] 15vh [headerTitle] 5vh;
+  grid-template-columns: 
+    [leftCol] 20vw
+    [middleCol] 40vw
+    [rightCol] 20vw;
+  column-gap: 0.5vw;
+  row-gap: 0.5vh;
+  padding: 0.5vh 0.5vw 0.5vh 0.5vw;
+}
+
+.header-custom-grid-item {
+  justify-self: center;
+  align-self: stretch;  
+}
+
+.header-title-item {
+  grid-column: middleCol;
+  grid-row: headerTitle;
+}
+
+.btn-back-item {
+  grid-column: leftCol;
+  grid-row: headerCustomItems;
+}
+
+.btn-pantry-item {
+  grid-column: middleCol;
+  grid-row: headerCustomItems;
+}
+
+.neon-clock-item {
+  grid-column: rightCol;
+  grid-row: headerCustomItems;
+}

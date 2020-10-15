@@ -8,8 +8,9 @@ import {
 
 import { withRouter } from "react-router-dom";
 
+// styles
 import '../static/css/Signup.css'
-
+import Logo from '../static/site/img/logonew.svg';
 class Login extends Component {
     state = {
         username: '',
@@ -17,7 +18,7 @@ class Login extends Component {
         confirmPassword: '',
         dob: '',
         loading: false,
-        API_HOST: 'http://127.0.0.1:8000',
+        API_HOST: 'http://localhost:8000',
         _csrfToken: null,
     };
 
@@ -153,6 +154,12 @@ class Login extends Component {
     render() {
         return (
             <div className="signup-page-frame Signup">
+                <header>
+                    <div className="big-logo">
+                        <img src={Logo} />
+                    </div>
+                    <h1 className="title">WELCOME - SIGN UP NOW!</h1>
+                </header>
                 <form onSubmit={this.handleSubmit} name="signupForm">
                     <FormGroup controlId="username" bsSize="large">
                         <ControlLabel>USERNAME</ControlLabel>
