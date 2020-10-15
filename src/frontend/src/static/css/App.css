@@ -41,8 +41,8 @@
 
 .btn {
   margin: 0 1vw 0 1vw;
-  height: auto;
-  width: 22%;
+  height: inherit;
+  width: auto;
   box-sizing: border-box;
   box-shadow: 0 0 5vh 0 gray;
   background: none;

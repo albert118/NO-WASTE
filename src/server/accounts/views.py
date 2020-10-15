@@ -49,7 +49,7 @@ class LoginView(View):
 
 
 class ChangePasswordView(LoginRequiredMixin, View):
-    allowed_methods = ['post', 'options']
+    allowed_methods = ['post', 'get', 'options']
     name = "Change Password View"
     # uncomment the following to override defaults set by settings associations
     # login_url = '/login/'
@@ -67,7 +67,7 @@ class ChangePasswordView(LoginRequiredMixin, View):
             user = form.save()
             update_session_auth_hash(request, user)  # avoids logout -> login path. Quicker if we do this for the user!
             messages.success(request, "Password change successful!")
-            return HttpResponseBadRequest("Password change successful!", status=200)
+            return HttpResponse("Password change successful!", status=200)
         else:
             messages.error(request, "Please correct the error below.")
             return HttpResponseBadRequest("Form invalid!")

@@ -20,11 +20,15 @@ export default class Pantry extends Component {
                             <div className="header-custom-grid-item header-title-item">
                                 <h1>My Pantry</h1>
                             </div>
-                            <div className="header-custom-grid-item btn-back-item">
-                                <button className="btnBack btn" />
+                            <div className="header-custom-grid-item">
+                                <div className="btn-back-item">
+                                    <button className="btnBack btn" />
+                                </div>  
                             </div>
-                            <div className="header-custom-grid-item btn-pantry-item">
-                                <PantryButton />
+                            <div className="header-custom-grid-item">
+                                <div className="btn-pantry-item">
+                                    <PantryButton />
+                                </div>
                             </div>
                             <div className="header-custom-grid-item neon-clock-item">
                                 <NeonClock />

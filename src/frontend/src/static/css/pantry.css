@@ -5,9 +5,15 @@ h1 {
   font-family: 'neoneonregular';
 }
 
-.pantry {
+.center {
+  text-align: center;
+  text-justify: stretch;
   width: 100%;
   margin: auto;
+}
+
+.pantry {
+  padding: 1vh 1vw 1vh 1vw;
 }
 
 .header-custom-view {
@@ -21,13 +27,14 @@ h1 {
 
 .header-grid {
   display: grid;
-  grid-template-rows: [headerCustomItems] 80% [headerTitle] 20%;
+  grid-template-rows: [headerCustomItems] 15vh [headerTitle] 5vh;
   grid-template-columns: 
-    [borderLeft] 5%
-    [leftCol] 25%
-    [middleCol] 40%
-    [rightCol] 25%
-    [borderRight] 5%;
+    [leftCol] 20vw
+    [middleCol] 40vw
+    [rightCol] 20vw;
+  column-gap: 0.5vw;
+  row-gap: 0.5vh;
+  padding: 0.5vh 0.5vw 0.5vh 0.5vw;
 }
 
 .header-custom-grid-item {
@@ -51,7 +58,6 @@ h1 {
 }
 
 .neon-clock-item {
-  height: 60%;
   grid-column: rightCol;
   grid-row: headerCustomItems;
 }
