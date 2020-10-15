@@ -11,7 +11,7 @@
     font-family: 'GlacialIndifferenceBold';
     font-weight: normal;
     font-style: normal;
-    font-size: 50px;
+    font-size: 30px;
 
   }
 
@@ -20,6 +20,30 @@
     max-width: 320px;  
   }
 
+  .title {
+    padding: 1px 0;
+    margin-top: 1px;
+    background-color: #cfcfcf;
+    color: black; 
+    text-align: center;
+    font-family: 'GlacialIndifferenceBold';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 50px;
+  }
+
+
+  .subtext {
+    padding: 1px 0;
+    margin-top: 20px;
+    background-color: #cfcfcf;
+    color: #8b8e93; 
+    text-align: center;
+    font-family: 'GlacialIndifferenceBold';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+  }
   .photo {
     height: 320px;
     width: 385px;

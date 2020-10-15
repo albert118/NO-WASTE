@@ -1,6 +1,9 @@
 // https://dev.to/rafacdomin/creating-floating-label-placeholder-for-input-with-reactjs-4m1f for floating labels
 // https://github.com/ihor/react-styled-floating-label git repo for floating labels
 import React, { Component } from "react";
+
+import { Link } from 'react-router';
+
 import {
     Button,
     FormGroup,
@@ -12,7 +15,7 @@ import { withRouter } from "react-router-dom";
 
 import Logo from '../static/site/img/logonew.svg';
 
-import '../static/css/Login.css';
+import style from '../static/css/Login.css';
 
 class Login extends Component {
     state = {
@@ -29,7 +32,7 @@ class Login extends Component {
 
     async componentDidMount() {
         // 1/10/2020
-        // TL; DR turns out Axios being based on XMLHttpRequest and Fetch on Request
+        // TL; DR turns out Axios being based on XzMLHttpRequest and Fetch on Request
         // matters in this specific case. XMLHttpRequest doesn't support mode, credentials and crossdomain
         // options. This means we can't get Django Authentication middleware to accept
         // our XMLHttp header token...yikes
@@ -116,13 +119,13 @@ class Login extends Component {
 
         this.setState({ loading: false });
     }
- 
+
     render() {
         return (
             <div className="login-page-frame Login">
                 <form onSubmit={ this.handleSubmit }>
                     <img src={Logo} class="center" />
-                    <p>WELCOME</p>
+                    <p className="title">WELCOME</p>
                     <FormGroup controlId="username" bsSize="large">
                         <ControlLabel>USERNAME</ControlLabel>
                         <FormControl
@@ -148,6 +151,10 @@ class Login extends Component {
                         }
                     >LOGIN</Button>
                 </form>
+                     <p className="subtext"> Not a member? link text->Sign Up</p>
+{/*add link to sign up page here*/}
+                
+             
             </div>
         );
     }
