@@ -18,7 +18,8 @@ import { Footer } from './components/base';
 
 // content components
 import { HeroHeader } from './content/heroHeader';
-import { Buttons } from './content/buttons';
+import Buttons from './content/buttons';
+import Pantry from './content/pantry' // pantry view
 
 // auth 
 import Login from './auth/Login'   // auth component logic, interfaces with Django backend
@@ -37,6 +38,7 @@ class App extends Component {
                         <Route path="/login" component={Login} />
                         <Route path="/logout" component={Logout} />
                         <Route path="/signup" component={SignUp} />
+                        <Route path="/pantry" component={Pantry} />
                     </Switch>
                     <Footer />
                 </div>

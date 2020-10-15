@@ -12,8 +12,8 @@ import '../static/css/Login.css'
 
 class Login extends Component {
     state = {
-        username: '',
-        password: '',
+        username: 'username@site.com',
+        password: 'SECRET! Password1234',
         loading: false,
         API_HOST:'http://localhost:8000',
         _csrfToken: null,
