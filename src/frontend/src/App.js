@@ -13,15 +13,19 @@ import './static/css/bootstrap-grid.css'; // bootstrap styling
 // cookies
 import { withCookies } from 'react-cookie'; // Cookies logic implented
 
-// custom components
+// child components and elements
 import { Footer } from './components/base';
-import { HeroHeader } from './components/heroHeader';
-import { Buttons } from './components/buttons';
-import Login from './components/Login' // auth component logic, interfaces with Django backend
-import Logout from './components/Logout' // auth signout logic
-import SignUp from './components/SignUp' // auth signup logic
 
-export default class App extends Component {
+// content components
+import { HeroHeader } from './content/heroHeader';
+import { Buttons } from './content/buttons';
+
+// auth 
+import Login from './auth/Login'   // auth component logic, interfaces with Django backend
+import Logout from './auth/Logout' // auth signout logic
+import SignUp from './auth/SignUp' // auth signup logic
+
+class App extends Component {
 	render() {
 		return (
             <Router>
@@ -64,4 +68,4 @@ class HomeDashboard extends Component {
 // Albert Ferguson, 2/10/2020 4:16PM
 // see this link below on setting up cookies with React
 // https://medium.com/@rossbulat/using-cookies-in-react-redux-and-react-router-4-f5f6079905dc
-// export default withCookies(App);
+export default withCookies(App);

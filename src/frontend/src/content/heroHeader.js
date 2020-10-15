@@ -1,7 +1,12 @@
+// React
 import React, { Component } from 'react';
-import NeonClock from './NeonClock';
-import WeatherWidget from './WeatherWidget';
-import SettingsButton from './SettingsButton';
+
+// child elements and components
+import NeonClock from '../components/NeonClock';
+import WeatherWidget from '../components/WeatherWidget';
+import SettingsButton from '../components/SettingsButton';
+
+// styling
 import "../static/css/heroHeader.css";
 
 export class HeroHeader extends Component {
