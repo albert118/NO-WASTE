@@ -31,42 +31,39 @@ from .models import Item, User, Inventory
 
 class All(View):
     """
-    Author: Ryan Cleminson
-    Author: Albert Ferguson
-
-    Get all view.
+    Author: Ryan Cleminson + Jayden Lee
     """
 
     allowed_methods = ["get", "options"]
 
+
     @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
-        """
-        Author: Albert Ferguson
-    
-        Get all view. Simply serializer.
-        """
 
-        # all_dict = dict()
-        # data = Inventory.objects.values()
-        # for i in range(len(data)):
-        #     all_dict[i] = data[i]
+        listOfObjects = list()
 
-        # get the current logged in user from request.
-        usr = User.objects.get(username=str(request.user))
-        # get their inventory
-        usr_inv_dict  = Inventory.objects.get(user=usr).item_set.all().values()[0]
-        response_dict = {
-            "id": usr_inv_dict["id"],
-            "title": usr_inv_dict["item_name"],
-            "added_date": usr_inv_dict["added_date"],
-            "expiry_date": usr_inv_dict["expiry_date"],
-            "quantity": usr_inv_dict["quantity"],
-            "description": usr_inv_dict["description"],
-            "cost": usr_inv_dict["cost"],
+        ItemObject = {
+            "name": "",
+            "expiry_date": "",
+            "added_date": "",
+            "quantity": 0,
+            "description": "",
+            "cost": float(0),
+        }
+        
+        for i in Item.objects.all():
+            toAppendObject = dict(ItemObject)
+            toAppendObject["name"] = i.item_name
+            toAppendObject["quantity"] = int(i.quantity)
+            toAppendObject["cost"] = float(i.cost)
+            listOfObjects.append(toAppendObject)
+        
+        responseObject = {
+            "time": timezone.now(),
+            "recipies": listOfObjects,
         }
 
-        return JsonResponse(response_dict, status=200)
+        return JsonResponse(responseObject, status = 200)
 
 
     def options(self, request):

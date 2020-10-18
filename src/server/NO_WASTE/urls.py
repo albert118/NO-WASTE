@@ -15,9 +15,10 @@ urlpatterns = [
     path("about/", views.AboutPage.as_view(), name="about"),
     path("admin/", admin.site.urls, name="admin"),
     path("accounts/", include('accounts.urls')),
-    path("inventory/", include("inventory.urls")),
-] 
-
+    path("admin/", admin.site.urls),
+    path("inventory/", invViews.Inventory.as_view()),
+    path("elasticsearch/", include("elasticsearch.urls"), name="ElasticSearch")
+]
 # User-uploaded files like profile pics need to be served in development
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
