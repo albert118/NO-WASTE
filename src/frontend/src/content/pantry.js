@@ -8,38 +8,38 @@ import NeonClock from '../components/NeonClock';
 import "../static/css/pantry.css";
 import "../"
 // child elements and components
-import { PantryButton } from "./buttons";
+import { PantryButton, BackButton } from "./buttons";
 
 export default class Pantry extends Component {
     render() {
         return (
             <article className="pantry">
                 <header className="header-custom-view">
-                    <article className="header-custom-view-box">
+                    <article className="hero-header-box black-box">
                         <div className="header-grid">
-                            <div className="header-custom-grid-item header-title-item">
+                            <div className=" header-title-item">
                                 <h1>My Pantry</h1>
                             </div>
-                            <div className="header-custom-grid-item">
-                                <div className="btn-back-item">
-                                    <button className="btnBack btn" />
-                                </div>  
+                            <div className="btn-back-item">
+                                <BackButton />
+                            </div>  
+                            <div className="btn-pantry-item">
+                                <PantryButton />
                             </div>
-                            <div className="header-custom-grid-item">
-                                <div className="btn-pantry-item">
-                                    <PantryButton />
-                                </div>
-                            </div>
-                            <div className="header-custom-grid-item neon-clock-item">
+                            <div className="neon-clock-item">
                                 <NeonClock />
                             </div>
                         </div>
                     </article>
                 </header>
-                <section className="content" aria-label="My Pantry">
+                <section className="content-box black-box" aria-label="My Pantry">
                     <main>
-                        <div className="pantry-item-grid">
+                        <div className="pantry-item-flex">
                             {/* articles generated per pantry item here. */}
+                            <PantryItem />
+                            <PantryItem />
+                            <PantryItem />
+                            <PantryItem />
                             <PantryItem />
                         </div>
                     </main>
@@ -54,7 +54,7 @@ class PantryItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: null,
+            data: props.data,
         };
     }
 
@@ -64,9 +64,14 @@ class PantryItem extends Component {
 
     render() {
         return (
-            <article className="grid-item pantry-grid-item ">
-                <div className="pantry-item">
-                    <p>SOMETHING IN MY CUPBOARD...</p>
+            <article className="pantry-item-card-container">
+                <div className="pantry-item-card">
+                    <img src={this.props.imgURL}></img>
+                    <div className="card-body">
+                        <h2>{this.props.title}</h2>
+                        <p>{this.props.description}</p>
+                    </div>
+                    <button>Get More!</button>
                 </div>
             </article>
                 

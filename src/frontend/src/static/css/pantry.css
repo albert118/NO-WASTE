@@ -5,24 +5,28 @@ h1 {
   font-family: 'neoneonregular';
 }
 
-.center {
-  text-align: center;
-  text-justify: stretch;
-  width: 100%;
-  margin: auto;
-}
-
 .pantry {
   padding: 1vh 1vw 1vh 1vw;
+  margin: 2vh 1vw 2vh 1vw;
 }
 
-.header-custom-view {
+.black-box {
+  width: 100%;
+  margin: 2vh 1vw 2vh 1vw;
   background-color: black;
   border-radius: 5vh;
   box-shadow: 0 0 10vh 0 gray;
   box-sizing: border-box;
+}
+
+.hero-header-box {
   max-height: 25vh;
   min-height: 10vh;
+}
+
+.content-box {
+  /* max-height: NOT SET, max is dynamic to the content.*/ 
+  min-height: 60vh;
 }
 
 .header-grid {
@@ -34,10 +38,12 @@ h1 {
     [rightCol] 20vw;
   column-gap: 0.5vw;
   row-gap: 0.5vh;
-  padding: 0.5vh 0.5vw 0.5vh 0.5vw;
+  padding: 0.5vh;
 }
 
-.header-custom-grid-item {
+.header-grid > div {
+  height: 100%;
+  margin: auto;
   justify-self: center;
   align-self: stretch;  
 }
@@ -53,11 +59,74 @@ h1 {
 }
 
 .btn-pantry-item {
+  width: 20%;
+  padding: 1em;
   grid-column: middleCol;
   grid-row: headerCustomItems;
 }
 
 .neon-clock-item {
+  /* widget size based on the font size, resize by changing it! */
+  font-size: 45%; 
   grid-column: rightCol;
   grid-row: headerCustomItems;
+}
+
+.pantry-item-flex {
+  width: 100%;
+  padding: 2vh 1vw;
+  /* flex config */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.pantry-item-card-container {
+  padding: 6vh 4vw;
+  flex: 1 0 50%;
+}
+
+.pantry-item-card {
+  display: grid;
+  /* hack: label the row and refer to it, otherwise it defaults to a second row */
+  grid-template-rows: [theRow] 100%; 
+  grid-template-columns: [body] 2fr [button] 0.5fr;
+  min-height: 10em;
+  box-shadow: 0 0 3vh 0 darkgray;
+  transition: 0.3s;
+}
+
+.pantry-item-card > img {
+  height: 100%;
+  margin: auto;
+}
+
+.pantry-item-card > .card-body {
+  grid-row: theRow;
+  grid-column: body;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: stretch;
+  justify-content: start;
+  align-content: flex-start;
+}
+
+.pantry-item-card > button{
+  margin: 1em;
+  color: white;
+  background-color: black;
+  grid-row: theRow;
+  grid-column: button;
+  justify-self: center;
+  align-self: stretch;
+}
+
+.pantry-item-card > button:hover {
+  box-shadow: 0 0 5vh 0 red;
+}
+
+.pantry-item-card:hover {
+  box-shadow: 0 0 5vh 0 white;
 }
