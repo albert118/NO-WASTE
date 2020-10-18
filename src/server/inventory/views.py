@@ -12,69 +12,91 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 
 # Http req and res
 from django.http import HttpRequest, Http404, HttpResponse, HttpResponseBadRequest
-# csrf and api logic
+
+# response
+# for serialization and deserialization
 from django.http import JsonResponse
-from django.middleware.csrf import get_token
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_protect
-import json # for serialization and deserialization
+import json
 
 from django.shortcuts import render
 from django.urls import get_resolver
 from django.utils import timezone
-from .models import Item, User
-# Create your views here.
+from .models import Item, User, Recipe
 
-class Inventory(View):
+##########################
+# Create your views here.
+##########################
+
+class All(View):
     """
-    Author: Ryan Cleminson + Jayden Lee
+    Author: Ryan Cleminson
+    Author: Albert Ferguson
+
+    Get all view.
     """
+
+    allowed_methods = ["get", "options"]
+
 
     def get(self, request, *args, **kwargs):
-        listOfObjects = list()
+        """
+        Author: Albert Ferguson
+    
+        Get all view. Simply serializer.
+        """
 
-        ItemObject = {
-            "name": "",
-            "expiry_date": "",
-            "added_date": "",
-            "quantity": 0,
-            "description": "",
-            "cost": float(0),
-        }
-        
-        for i in Item.objects.all():
-            toAppendObject = dict(ItemObject)
-            toAppendObject["name"] = i.item_name
-            toAppendObject["quantity"] = int(i.quantity)
-            toAppendObject["cost"] = float(i.cost)
-            listOfObjects.append(toAppendObject)
-        
-        responseObject = {
-            "time": timezone.now(),
-            "recipies": listOfObjects,
-        }
+        all_dict = dict()
+        data = Recipe.objects.values_list()
+        for i in range(len(data)):
+            all_dict[i] = data[i]
 
-        return JsonResponse(responseObject, status = 200)
+        return JsonResponse(all_dict, status=200)
 
-    def post(self, request, *args, **kwargs):
-        return HttpResponse(str("hi"), status = 200)
-
-        # form = InventoryForm(content)
-        # if form.is_valid():
-        #     form.save()
-        #     return HttpResponse("successfully added item", status=200)
-        # else:
-        # return HttpResponseBadRequest("U FUCKED UP")
 
     def options(self, request):
+        """
+        Author: Ryan Cleminson
+        
+        Returns the options allowed for the current view.
+        """
+
         response = HttpResponse()
         response['allow'] = ','.join(self.allowed_methods)
-        return response.set_cookie("csfrtoken", get_token(request))
+        return response
 
-def csrf(request):
-    return JsonResponse({ 'csrfToken': get_token(request) })
 
-def ping(request):
-    return JsonResponse({'result': 'OK'})
+class AlphabeticOrder(View):
+    """
+    Author: Albert Ferguson
+
+    Get ordered view.
+    """
+
+    allowed_methods = ["get", "options"]
+
+    def get(self, request, *args, **kwargs):
+        """
+        Author: Albert Ferguson
+    
+        Get all view. Simple ordered serializer.
+        """
+
+        all_dict = dict()
+        data = Recipe.objects.values_list("recipe_name", "added_date")
+        for i in range(len(data)):
+            all_dict[i] = data[i]
+
+        return JsonResponse(all_dict, status=200)
+
+    def options(self, request):
+        """
+        Author: Albert Ferguson
+        
+        Returns the options allowed for the current view.
+        """
+
+        response = HttpResponse()
+        response['allow'] = ','.join(self.allowed_methods)
+        return response

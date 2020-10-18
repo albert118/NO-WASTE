@@ -7,9 +7,9 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
 
-urlpatterns = [
-    path('invent/', views.Inventory.as_view()),
 
-    path('csrf/', views.csrf),
-    path('ping/', views.ping),
+app_name = "inventory"
+urlpatterns = [
+    path('all/', views.All.as_view()),
+    path('allAlphaOrdering/', views.AlphabeticOrder.as_view())
 ]

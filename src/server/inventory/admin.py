@@ -1,10 +1,5 @@
 from django.contrib import admin
-from .models import Recipe, Item, Inventory, Author
-
-
-@admin.register(Author)
-class AuthorAdmin(admin.ModelAdmin):
-    pass
+from .models import Recipe, Item, Inventory
 
 
 @admin.register(Recipe)
