@@ -9,6 +9,7 @@ import "../static/css/pantry.css";
 import "../"
 // child elements and components
 import { PantryButton, BackButton } from "./buttons";
+import { fetchResource } from "../components/base";
 
 export default class Pantry extends Component {
     render() {
@@ -54,22 +55,33 @@ class PantryItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: props.data,
+            title: ' ',
+            quantity: ' ',
+            imgSrc: ' ',
+            expiryDate: '',
         };
     }
 
     componentDidMount() {
-        // add AJAX req here to backend py-view
+        // make an AJAX get req' for all current inventory in pantry...
+        const data = fetchResource("inventory/all", {method: "GET"});
+        this.setState({
+            title: data.title,
+            quantity: data.quantity,
+            imgSrc: data.imgSrc,
+            expiryDate: data.expiryDate,
+        });
     }
 
     render() {
         return (
             <article className="pantry-item-card-container">
                 <div className="pantry-item-card">
-                    <img src={this.props.imgURL}></img>
+                    <img src={this.state.imgSrc}></img>
                     <div className="card-body">
-                        <h2>{this.props.title}</h2>
-                        <p>{this.props.description}</p>
+                        <h2>{this.state.title}</h2>
+                        <p>{this.state.expiryDate}</p>
+                        <p>{this.state.quantity}</p>
                     </div>
                     <button>Get More!</button>
                 </div>

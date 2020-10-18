@@ -156,9 +156,7 @@ class Login extends Component {
                     >LOGIN</Button>
                 </form>
                      <p className="subtext"> Not a member? link text->Sign Up</p>
-{/*add link to sign up page here*/}
-                
-             
+                    {/*add link to sign up page here*/}
             </div>
         );
     }
