@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import include, path
+# from . import inventory
 from . import views
 
 # Personalized admin site settings like title and header
@@ -14,7 +15,9 @@ urlpatterns = [
     path("about/", views.AboutPage.as_view(), name="about"),
     path("admin/", admin.site.urls, name="admin"),
     path("accounts/", include('accounts.urls')),
+    path("inventory/", include("inventory.urls")),
 ] 
+
 # User-uploaded files like profile pics need to be served in development
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
