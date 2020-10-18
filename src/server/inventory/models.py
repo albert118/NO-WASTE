@@ -12,12 +12,25 @@ class Inventory(models.Model):
         primary_key=True
     )
 
-    # def __str__(self):
-    #     return "{USR_NAME}'s inventory"
-
-
 class Recipe(models.Model):
-    recipe_name = models.CharField(default="", max_length=100, blank=False)
+        
+    recipe_name = models.CharField(max_length=100, default="")    
+    purchase_date = models.DateField(blank=True, null=False, default=date.today())
+    added_date    = models.DateField(default=date.today())
+    total_cost    = models.FloatField(blank=True, null=False, default=0)
+    purchase_location  = models.CharField(max_length=100) # -Albert MORE DESCRIPTIVE NAME?
+    num_items     = models.IntegerField(default=0)
+
+class Item(models.Model):
+    expiry_date   = models.DateField(blank=False)
+    added_date    = models.DateField(default=date.today())
+    quantity      = models.IntegerField(default=1, blank=True, null=False)
+    description   = models.CharField(blank=True, max_length=100, null=False, default="")
+    cost          = models.FloatField(default=0, blank=True, null=False)
+    receipt_id = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    
+    # -Albert needs a Meta class for a name, otherwise the name on the form 
+    # shows up as Item Object 1
 
     description = models.CharField(
         default="... Who am I? What am I?!",

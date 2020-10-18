@@ -89,6 +89,7 @@ INSTALLED_APPS = [
     'django_extensions',  # extensions for the django manage.py interface
     'corsheaders', # enable CORS header control
     'inventory', # enable the inventory app
+    'elasticsearch-app',
 ]
 
 MIDDLEWARE = [
