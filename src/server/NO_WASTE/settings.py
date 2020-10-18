@@ -88,8 +88,7 @@ INSTALLED_APPS = [
     'health_macros',
     'django_extensions',
     'inventory',
-    'elasticsearch',
-    'rest_framework',
+    'elasticsearch-app',
 ]
 
 MIDDLEWARE = [
