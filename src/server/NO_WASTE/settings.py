@@ -14,6 +14,7 @@ import os
 from django.urls import reverse_lazy
 from pathlib import Path
 import environ
+import sys
 
 ################################################################################
 # Use Twelve-Factor system. Read more: https://12factor.net/
@@ -87,6 +88,8 @@ INSTALLED_APPS = [
     'health_macros',
     'django_extensions',
     'inventory',
+    'elasticsearch',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
