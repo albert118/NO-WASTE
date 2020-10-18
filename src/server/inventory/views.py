@@ -23,24 +23,40 @@ import json # for serialization and deserialization
 
 from django.shortcuts import render
 from django.urls import get_resolver
+from django.utils import timezone
 from .models import Item, User
 # Create your views here.
 
 class Inventory(View):
     """
-    Author: Ryan Cleminson
+    Author: Ryan Cleminson + Jayden Lee
     """
-    allowed_methods = ['get', 'post', 'options']
-    name = "Add Item View"
 
     def get(self, request, *args, **kwargs):
-        names = []
-        for i in Item.objects.all():
-            names.append(i.item_name)
-            quantity.append(i.quantity)
-            cost.append(i.cost)
+        listOfObjects = list()
 
-        return HttpResponse(str(names), status = 200)
+        ItemObject = {
+            "name": "",
+            "expiry_date": "",
+            "added_date": "",
+            "quantity": 0,
+            "description": "",
+            "cost": float(0),
+        }
+        
+        for i in Item.objects.all():
+            toAppendObject = dict(ItemObject)
+            toAppendObject["name"] = i.item_name
+            toAppendObject["quantity"] = int(i.quantity)
+            toAppendObject["cost"] = float(i.cost)
+            listOfObjects.append(toAppendObject)
+        
+        responseObject = {
+            "time": timezone.now(),
+            "recipies": listOfObjects,
+        }
+
+        return JsonResponse(responseObject, status = 200)
 
     def post(self, request, *args, **kwargs):
         return HttpResponse(str("hi"), status = 200)
