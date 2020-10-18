@@ -10,11 +10,8 @@ class Author(models.Model):
 
 class Item(models.Model):
     item_name = models.CharField(max_length=100, default="")    
-
-    class Meta:
-        indexes = [
-            models.Index(fields=['item_name'])
-        ]
+    def __str__(self):
+        return str(self.item_name)
 
     expiry_date   = models.DateField(blank=False)
     added_date    = models.DateField(default=date.today())

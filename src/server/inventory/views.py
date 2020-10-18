@@ -34,19 +34,16 @@ class Inventory(View):
     name = "Add Item View"
 
     def get(self, request, *args, **kwargs):
-        
-        for p in Item.objects.all():
-            print(p.item_name)
-        response = HttpResponse(Item, status = 200)
-        return response
+        names = []
+        for i in Item.objects.all():
+            names.append(i.item_name)
+            quantity.append(i.quantity)
+            cost.append(i.cost)
+
+        return HttpResponse(str(names), status = 200)
 
     def post(self, request, *args, **kwargs):
-        content = json.loads(request.body.decode("utf-8")) # data comes in body, must be decoded.
-        
-        for p in Item.objects.all():
-            print(p.headline)
-        response = HttpResponse(Item, status = 200)
-        return response
+        return HttpResponse(str("hi"), status = 200)
 
         # form = InventoryForm(content)
         # if form.is_valid():
