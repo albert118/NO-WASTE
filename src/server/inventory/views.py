@@ -23,7 +23,7 @@ import json
 from django.shortcuts import render
 from django.urls import get_resolver
 from django.utils import timezone
-from .models import Item, User, Recipe
+from .models import Item, User, Inventory
 
 ##########################
 # Create your views here.
@@ -39,7 +39,7 @@ class All(View):
 
     allowed_methods = ["get", "options"]
 
-
+    @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
         """
         Author: Albert Ferguson
@@ -47,12 +47,26 @@ class All(View):
         Get all view. Simply serializer.
         """
 
-        all_dict = dict()
-        data = Recipe.objects.values_list()
-        for i in range(len(data)):
-            all_dict[i] = data[i]
+        # all_dict = dict()
+        # data = Inventory.objects.values()
+        # for i in range(len(data)):
+        #     all_dict[i] = data[i]
 
-        return JsonResponse(all_dict, status=200)
+        # get the current logged in user from request.
+        usr = User.objects.get(username=str(request.user))
+        # get their inventory
+        usr_inv_dict  = Inventory.objects.get(user=usr).item_set.all().values()[0]
+        response_dict = {
+            "id": usr_inv_dict["id"],
+            "title": usr_inv_dict["item_name"],
+            "added_date": usr_inv_dict["added_date"],
+            "expiry_date": usr_inv_dict["expiry_date"],
+            "quantity": usr_inv_dict["quantity"],
+            "description": usr_inv_dict["description"],
+            "cost": usr_inv_dict["cost"],
+        }
+
+        return JsonResponse(response_dict, status=200)
 
 
     def options(self, request):
@@ -76,6 +90,7 @@ class AlphabeticOrder(View):
 
     allowed_methods = ["get", "options"]
 
+    @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
         """
         Author: Albert Ferguson

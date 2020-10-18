@@ -12,6 +12,34 @@ import { PantryButton, BackButton } from "./buttons";
 import { fetchResource } from "../components/base";
 
 export default class Pantry extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: '',
+            quantity: '',
+            description: '',
+            expiryDate: '',
+            isLoading: true,
+            loadingDefaultMsg: "loading",
+        };
+    }
+
+    componentDidMount() {
+        this.getData();
+    }
+
+    async getData() {
+        // make an AJAX get req' for all current inventory in pantry...
+        const responseData = await fetchResource("inventory/all", { method: "GET" });
+        this.setState({
+            title: responseData.title,
+            quantity: responseData.quantity,
+            // imgSrc: responseData.imgSrc,
+            expiryDate: responseData.expiryDate,
+            description: responseData.description,
+        });
+    }
+
     render() {
         return (
             <article className="pantry">
@@ -35,13 +63,16 @@ export default class Pantry extends Component {
                 </header>
                 <section className="content-box black-box" aria-label="My Pantry">
                     <main>
+                        {/* articles generated per pantry item here. */}
                         <div className="pantry-item-flex">
-                            {/* articles generated per pantry item here. */}
-                            <PantryItem />
-                            <PantryItem />
-                            <PantryItem />
-                            <PantryItem />
-                            <PantryItem />
+                            {/* TODO: add mapping here to arbitrarily add as many items as needed! */}
+                            <PantryItem
+                                title={this.state.title}
+                                quantity={this.state.quantity}
+                                description={this.state.description}
+                                expiryDate={this.state.expiry_date}
+                                loadingDefaultMsg={this.state.loadingDefaultMsg}
+                            />
                         </div>
                     </main>
                 </section>
@@ -50,38 +81,27 @@ export default class Pantry extends Component {
     }
 }
 
-
 class PantryItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: ' ',
-            quantity: ' ',
-            imgSrc: ' ',
-            expiryDate: '',
+            isLoading: false,
+            loadingDefaultMsg: props.loadingDefaultMsg,
         };
     }
 
-    componentDidMount() {
-        // make an AJAX get req' for all current inventory in pantry...
-        const data = fetchResource("inventory/all", {method: "GET"});
-        this.setState({
-            title: data.title,
-            quantity: data.quantity,
-            imgSrc: data.imgSrc,
-            expiryDate: data.expiryDate,
-        });
-    }
 
     render() {
+        const { isLoading, loadingDefaultMsg } = this.state;
         return (
             <article className="pantry-item-card-container">
                 <div className="pantry-item-card">
-                    <img src={this.state.imgSrc}></img>
+                    {/* <img src={this.state.imgSrc}></img> */}
                     <div className="card-body">
-                        <h2>{this.state.title}</h2>
-                        <p>{this.state.expiryDate}</p>
-                        <p>{this.state.quantity}</p>
+                        <h2>{isLoading ? loadingDefaultMsg : this.props.title}</h2>
+                        <p>{isLoading ? loadingDefaultMsg : this.props.expiryDate}</p>
+                        <p>{isLoading ? loadingDefaultMsg : this.props.quantity}</p>
+                        <p>{isLoading ? loadingDefaultMsg : this.props.description}</p>
                     </div>
                     <button>Get More!</button>
                 </div>

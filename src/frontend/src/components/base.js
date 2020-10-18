@@ -153,10 +153,10 @@ export const fetchResource = (path, userOptions = {}) => {
             } else if (response.status < 200 || response.status >= 300) {
                 // return the response message as text
                 return response.text();
-            } else {
-                // return the json response
-                return response.json();
             }
+            // return the json response
+            return response.json();
+                
         }).then(parsedResponse => {
             if (response.status < 200 || response.status >= 300) {
                 // throw the error if we get here.

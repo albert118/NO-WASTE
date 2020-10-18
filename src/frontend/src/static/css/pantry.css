@@ -104,6 +104,7 @@ h1 {
 }
 
 .pantry-item-card > .card-body {
+  color: white;
   grid-row: theRow;
   grid-column: body;
   display: flex;
