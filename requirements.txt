@@ -16,6 +16,7 @@ djangorestframework==3.12.1
 docutils==0.16
 easy-thumbnails==2.7
 elasticsearch==7.9.1
+elasticsearch-dsl==7.3.0
 idna==2.10
 imagesize==1.2.0
 importlib-metadata==2.0.0

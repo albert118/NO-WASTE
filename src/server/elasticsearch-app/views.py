@@ -28,6 +28,7 @@ from django.utils import timezone
 from . import models
 from elasticsearch import Elasticsearch
 from inventory.models import Item, User, Inventory
+import ast
 
 
 # Create your views here.
@@ -40,7 +41,7 @@ class Recipe(View):
 
     def get(self, request, *args, **kwargs):
 
-        pantryContent = list()
+        pantryContent = []
         # get the current logged in user from request.
         usr = User.objects.get(username=str(request.user))
         # get their inventory
@@ -51,11 +52,11 @@ class Recipe(View):
             pantryContent.append(usr_inv_listofDicts[i]["item_name"])
 
         recipe_search_query = buildRecipesQuery(pantryContent)
-        print(recipe_search_query)
 
         recipe_search = self.es.search(index="recipes", body=recipe_search_query)
-
-        return HttpResponse(str(recipe_search), status = 200)
+        recipe_search = str(recipe_search)
+        recipe_search = ast.literal_eval(recipe_search)
+        return JsonResponse(recipe_search, status = 200)
 
     def post(self, request, *args, **kwargs):
 
@@ -66,12 +67,32 @@ def csrf(request):
     return JsonResponse({ 'csrfToken': get_token(request) })
 
 def buildRecipesQuery(inventoryList, keywords=None, *args, **kwargs):
+    # query = {
+    #     'query': {
+    #         'multi_match': 
+    #         {'query': inventoryList, 
+    #         'fields': "ingredients"}
+    #     }
+    # }
+    match = []
+
+    for i in range(len(inventoryList)):
+        match.append(
+            {
+            'match': { 
+                "ingredients": {'query': inventoryList[i]}
+                }
+            }
+        )
+
     query = {
         'query': {
-            'multi_match': 
-            {'query': inventoryList, 'fields': "ingredients", '_name': 'keywords'}
-        }
+            'bool': {
+                'should': match
+            }
+        },
+        'size': 10
     }
-    
+
     return query
 
