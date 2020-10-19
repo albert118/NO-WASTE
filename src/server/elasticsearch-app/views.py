@@ -24,34 +24,49 @@ import json # for serialization and deserialization
 from django.shortcuts import render
 from django.urls import get_resolver
 from django.utils import timezone
-# Create your views here.
-from . import models
+
 from elasticsearch import Elasticsearch
-from inventory.models import Item, User, Inventory
 import ast
 
 
-# Create your views here.
-
 
 class Recipe(View):
-    """ Author Jayden Lee"""
-    def __init__(self):
-        self.es = Elasticsearch([{'host': '127.0.0.1', 'port': 9200}])
+    """
+    Author Jayden Lee
+    
+    Recipe views via Elasticsearch. The Django Proxy implementation.
+    """
+    def __init__(self, *args, **kwargs):
+        # default config
+        ip_default = "127.0.0.1"
+        port_default = 9200
 
+        if ("ip" in kwargs.keys):
+            self.ip = str(kwargs["ip"])
+        else:
+            self.ip = ip_default
+        
+        if ("port" in kwargs.keys):
+            self.port = int(kwargs["port"])
+        else:
+            self.port = port_default
+        
+        self.es = Elasticsearch([{'host': self.ip, "port": self.port}])
+
+    @method_decorator(login_required)
+    @method_decorator(csrf_protect)
     def get(self, request, *args, **kwargs):
-
-        pantryContent = []
-        # get the current logged in user from request.
+        # declare a list to hold query terms.
+        pantryContent = list()
+        # get the current logged in user from request and get their inventory.
         usr = User.objects.get(username=str(request.user))
-        # get their inventory
         usr_inv_listofDicts = Inventory.objects.get(user=usr).item_set.all().values()
 
         for i in range(len(usr_inv_listofDicts)):
             # item UUID4 is id for every item entered into response.
             pantryContent.append(usr_inv_listofDicts[i]["item_name"])
 
-        recipe_search_query = buildRecipesQuery(pantryContent)
+        recipe_search_query = self._buildRecipesQuery(pantryContent)
 
         recipe_search = self.es.search(index="recipes", body=recipe_search_query)
         recipe_search = str(recipe_search)
@@ -59,26 +74,32 @@ class Recipe(View):
         return JsonResponse(recipe_search, status = 200)
 
 
-def buildRecipesQuery(inventoryList, keywords=None, *args, **kwargs):
-    match = []
+    def _buildRecipesQuery(inventoryList, keywords=None, *args, **kwargs):
+        """
+        Author: Jayden Lee
 
-    for i in range(len(inventoryList)):
-        match.append(
-            {
-            'match': { 
-                "ingredients": {'query': inventoryList[i]}
+        Build the query per ingredient to match. Appyling pagination.
+        """
+
+        match = list()
+
+        for i in range(len(inventoryList)):
+            match.append(
+                {
+                'match': { 
+                    "ingredients": {'query': inventoryList[i]}
+                    }
                 }
-            }
-        )
+            )
 
-    query = {
-        'query': {
-            'bool': {
-                'should': match
-            }
-        },
-        'size': 10
-    }
+        query = {
+            'query': {
+                'bool': {
+                    'should': match
+                }
+            },
+            'size': 10
+        }
 
-    return query
+        return query
 
