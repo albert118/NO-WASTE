@@ -60,8 +60,22 @@ Import the var's. This changes per OS. Windows should Win+R `sysdm.cpl` and add 
 3.  Install the Python dependencies:
 
 `python -m pip install -r requirements.txt --user`
+`pip3 install -r requirements.txt`
 
-4. Make the docs:
+4. Elasticsearch Setup:
+
+Download and install elasticsearch, can be downloaded from https://www.elastic.co/downloads/elasticsearch
+Please download version 7.9.2 and store it in the src directory.
+Navigate into the elasticsearch folder and type `./elasticsearch`
+
+ElasticSearch is running by default on http://localhost:9200/ 
+
+
+5. Setup SQLLite Database: 
+`sudo apt-get install sqlite3`
+
+
+6. Make the docs:
 
 `cd docs`
 `make html`

@@ -1,0 +1,51 @@
+@import "../fonts/GlacialIndifferenceBold.css";
+@media all and (min-width: 480px) {
+  .Signup {
+    padding: 2vh;
+    width: 100%;
+    background-color: #cfcfcf;
+    color: black; 
+    text-align: center;
+    font-family: 'GlacialIndifferenceBold';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 30px;
+  }
+
+  .Signup form {
+    margin: 1vh auto 5vh auto;
+    max-width: 320px;
+    background-color: #cfcfcf;
+    color: black; 
+    text-align: center;
+    font-family: 'GlacialIndifferenceBold';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+  }
+
+  .form-row {
+    border-bottom: 1px solid #eee;
+
+  }
+
+  .aligned label {
+    display: block;
+    padding: 4px 10px 0 0;
+    float: left;
+    line-height: 1;
+  }
+
+  .wide label {
+    width: 200px;
+  }
+
+  .big-logo {
+    /* display: flex; */
+    /* align-items: center;
+    justify-items: center; */
+    padding: 1vh;
+    margin: auto;
+    width: 100%;
+}
+}

@@ -1,0 +1,23 @@
+/*<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/glacial-indifference" type="text/css"/>*/
+
+body {
+    margin-top: 100px;
+    background-color: #cfcfcf;
+}
+
+.welcomeText {
+    background-color: none;
+    color: black; 
+    text-align: center;
+    font-family: 'GlacialIndifferenceBold';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 35px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }

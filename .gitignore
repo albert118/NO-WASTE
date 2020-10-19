@@ -26,6 +26,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+src/elasticsearch
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -53,9 +54,12 @@ coverage.xml
 
 # Django stuff:
 *.log
+# Sqlite3
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+sqlite3.def
+sqlite3.dll
 
 # Flask stuff:
 instance/
@@ -105,6 +109,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+elasticsearch/
+migrations/
 
 # Spyder project settings
 .spyderproject

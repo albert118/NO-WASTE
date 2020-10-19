@@ -1,0 +1,49 @@
+@import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
+
+.hero-header-box {
+  width: 100%;
+  margin: auto;
+  background-color: black;
+  border-radius: 5vh;
+  box-shadow: 0 0 10vh 0 gray;
+  box-sizing: border-box;
+  max-height: 33vh;
+  min-height: 10vh;
+}
+
+.hero-header-text {
+  color: #fff;
+  font-weight: bold;
+}
+
+.hero-header-grid {
+  width: 100%;
+  margin: auto;
+  display: grid;
+  grid-template-rows: [widgets] 100%;
+  grid-template-columns: 
+    [borderLeft] 5%
+    [neonClock] 50%
+    [weatherWidget] 30% 
+    [settingsBtn] 10%
+    [borderRight] 5%;
+}
+
+.hero-header-item {
+  align-self: center;
+}
+
+.hero-header-item.clock {
+  justify-self: right;
+  grid-column: neonClock;
+}
+
+.hero-header-item.weather {
+  justify-self: right;
+  grid-column: weatherWidget;
+}
+
+.hero-header-item.settings {
+  align-self: start;
+  grid-column: settingsBtn;
+}

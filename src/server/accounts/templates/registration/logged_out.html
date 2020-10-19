@@ -1,0 +1,22 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+
+{% block content %}
+
+<div class="limiter">
+	<div class="container-100"
+		style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url({% static 'accounts/images/bg-01.jpg' %});">
+
+		<div class="text-center">
+			<h4>Logged out</h4> <br>
+			<a class="text-white" href="{% url 'login' %}">Log-in again</a>
+		</div>
+
+
+	</div>
+</div>
+
+{% endblock content %}
