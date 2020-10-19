@@ -77,6 +77,7 @@ export const fetchResource = (path, userOptions = {}) => {
     const HttpUnauthorised = 401;
     const HttpNotFound = 404;
     const HttpBadRequest = 400;
+    const HttpMovedPermanently = 301;
 
     // API source to request from, root url
     const APIRootPath = "http://localhost:8000";
@@ -159,7 +160,9 @@ export const fetchResource = (path, userOptions = {}) => {
             return response.json();
                 
         }).then(parsedResponse => {
-            if (response.status < 200 || response.status >= 300) {
+            if (response.status === HttpMovedPermanently) {  
+                return parsedResponse; // redirect!!
+            } else if (response.status < 200 || response.status >= 300) {
                 // throw the error if we get here.
                 throw parsedResponse;
             }

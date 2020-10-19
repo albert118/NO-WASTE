@@ -5,11 +5,12 @@
 
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.views.generic.base import RedirectView
 from . import views
-
 
 app_name = "inventory"
 urlpatterns = [
     path('all/', views.All.as_view()),
-    path('allAlphaOrdering/', views.AlphabeticOrder.as_view())
+    path('allAlphaOrdering/', views.AlphabeticOrder.as_view()),
+    path("all/accounts/login/", RedirectView.as_view(url="/accounts/login/?next=/inventory/all/", permanent=True)),
 ]

@@ -1,5 +1,6 @@
 // React
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 
 // child elements and components
 import NeonClock from '../components/NeonClock';
@@ -12,7 +13,7 @@ import "../"
 import { PantryButton, BackButton } from "./buttons";
 import { fetchResource } from "../components/base";
 
-export default class Pantry extends Component {
+class Pantry extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,7 +30,9 @@ export default class Pantry extends Component {
     async getData() {
         // make an AJAX get req' for all current inventory in pantry...
         const responseData = await fetchResource("inventory/all", { method: "GET" });
-        if (responseData) {
+        if (String(responseData).includes("login")) {
+            this.props.history.push("/login");
+        } else if (typeof (responseData) === Object) {
             this.setState({
                 items: Object.entries(responseData).map(([key, value]) => (value))
             });
@@ -140,3 +143,5 @@ class PantryItem extends Component {
         );
     }
 }
+
+export default withRouter(Pantry);
