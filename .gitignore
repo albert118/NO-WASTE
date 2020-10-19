@@ -26,6 +26,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+src/elasticsearch
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -108,6 +109,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+elasticsearch/
+migrations/
 
 # Spyder project settings
 .spyderproject
