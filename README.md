@@ -3,17 +3,38 @@
 
 # Set-Up (Development)
 
-**Prior to the following set up, please ensure Python (3.6.X) and Java 8 are installed.**
+**Prior to the following set up, please ensure Python (3.6.x or 3.8.x) and Java 8 are installed.**
 
 ## JavaScript and NPM
 
 1. Start by setting up the npm development environment. If you only wish to develop Python elements of this project, install npm and the jsdoc dependency to avoid build errors on docs compilation.
+
+Prior to running the rest of frontend set up, ensure npm and Java 8 are installed. For Windows, Choclatey is reccomended.
+
+#### Windows
+
+This includes an npm distribution, run the command via Powershell as admin.
+
+`choco install -y nodejs`
+
+#### Linux
+
+`sudo apt-get install npm nodejs`.
 
 2. cd to `src/frontend` and run `npm install`.
 
 3. Now run `npm start`. This should start the SPA on localhost:3000 and be ready to go for frontend dev.
 
 ## Python
+#### Note:
+
+If you wish to set up the production environment for serving this, then further MySQL configuration will be required. By default the mysql_connector is included in python's requirements.txt, **if you are not doing setting up MySQL for production or full database testing, then remove the dep.**
+
+If you are, then on a Linux environment the following install command is requried:
+
+`sudo apt-get install libmysqlclient-dev python-dev sqlite3`
+
+**If you are not setting up production read on.**
 
 To set-up a development environment for Python, install virtualenv. Pip is the prefered way to install Python packages and is included most Python installations by default. 
 
@@ -34,8 +55,13 @@ Depending on your system **Python may utilise a different command-line handle!**
 
 3. Set up local environement variables
 
-	a. Create `local.env` in `NO-WASTE` directory.
-	b. Create and populate the following fields:
+a. Create `local.env` in `NO-WASTE` directory.
+
+b. Create and populate the following fields:
+
+
+### Windows 
+
 ```
 DEBUG=True
 BASE_DIR=PATH_TO_YOUR_SRC_PROJECT_DIR
@@ -43,15 +69,42 @@ ALLOWED_HOSTS=127.0.0.1
 DJANGO_SECRET_KEY=DJANGO_KEY_NOT_REQUIRED_IN_DEV
 WEATHERSTACK_API_KEY=YOUR_API_KEY_HERE
 ```
-	c. populate the django secret key with a random one from [this tool](https://djecrety.ir/).
+
+Add the environment variables,
+
+`for /F %A in (local.env) do SET %A`
+
+### Unix (Linux or OS X)
+
+```
+DEBUG=True
+BASE_DIR=PATH_TO_YOUR_SRC_PROJECT_DIR
+ALLOWED_HOSTS=127.0.0.1
+DJANGO_SECRET_KEY=DJANGO_KEY_NOT_REQUIRED_IN_DEV
+WEATHERSTACK_API_KEY=YOUR_API_KEY_HERE
+```
+
+Note: if using WSL then you base-dir should look like this example,
+e.g. `BASE_DIR=/mnt/d/Coding/NO-WASTE/src/`
+
+c. populate the django secret key with a random one from [this tool](https://djecrety.ir/).
 
 Import the var's. This changes per OS. Windows should Win+R `sysdm.cpl` and add them then restart the console. Linux and OS X should source the env file.
 
 ### Windows
 
-`Scripts\activate`
+Start with `Scripts\activate`:
 *prompt should change to:*
 `(NO-WASTE) C:\NO-WASTE> `
+
+3.  Install the Python dependencies:
+
+`python -m pip install -r requirements.txt --user`
+
+4. Make the docs:
+
+`cd docs`
+`make html`
 
 ### Unix (Linux or OS X)
 
@@ -62,6 +115,7 @@ Import the var's. This changes per OS. Windows should Win+R `sysdm.cpl` and add 
 `python -m pip install -r requirements.txt --user`
 `pip3 install -r requirements.txt`
 
+
 4. Elasticsearch Setup:
 
 Download and install elasticsearch, can be downloaded from https://www.elastic.co/downloads/elasticsearch
@@ -70,18 +124,41 @@ Navigate into the elasticsearch folder and type `./elasticsearch`
 
 ElasticSearch is running by default on http://localhost:9200/ 
 
-
 5. Setup SQLLite Database: 
 `sudo apt-get install sqlite3`
 
 
-6. Make the docs:
+6. **Optional**: Make the docs:
 
 `cd docs`
 `make html`
 
 Then open build\index.html with your web browser of choice.
 
+7. **Optional**: Production database set up (Linux guide):
+
+This step assumes you're hosting the prod server on some Linux-esque environment. If you're crazy enough to drag Windows and all it's nonsense along, then you can do that - I didn't, I find Linux less likely to cause headaches and be more consistent.
+
+Now to test a simple database setup, open the new sqlite3 CLI and create a simple file for Django to use. Yes the name is important, it can be changed, but this is purely to make sure the db set up and Python environ is correct so far.
+
+```
+$ sqlite3
+>sqlite3 .open db.sqlite3
+>sqlite3 .exit
+$ ls 
+
+accounts  bootstrap db.sqlite3  health_macros manage.py NO_WASTE  static  templates
+
+$ python manage.py reset_db # confirm with 'yes'
+$ python manage.py migrate
+$ python manage.py runserver
+```
+
+If the above doesn't start up the Django server correctly, check the environment set up notes and make sure they are correct. If you get db connection warnings from Django, then double check the BASE_DIR var is correct (I reccomend the abs path as it's reliable between user execution unlike the ~ shortcut). If the error persists, then double check the correct Python version is being utilised - although that should result in an error from manage.py... "But it works on my machine" doesn't mean it can't break on yours. Finnaly, double check the local.env file is sourced correctly, update packages through apt and "turn it off and on again" for good measure. 
+
+*If again it still persists with a db connection error, then contact me (albertferguson118@gmail.com, RE: NO-WASTE db connection setup issue).* Please include the stack-trace.
+
+# Further Notes and Information on the Project
 ## The Django Secret Key
 
 The Django Secret key is only required for consistency across sessions and Django-based "events". It used by Django backend to create hashes for passwords and session caches.For more information on it read [this](https://stackoverflow.com/questions/7382149/purpose-of-django-setting-secret-key), and [this](https://stackoverflow.com/questions/51657422/are-django-secret-keys-per-instance-or-per-app).
