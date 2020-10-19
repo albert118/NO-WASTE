@@ -65,4 +65,10 @@ class Recipe(View):
 def csrf(request):
 	return JsonResponse({ 'csrfToken': get_token(request) })
 
-	
+def ElasticQuuery(request):
+	if request.method == 'POST':
+		print(request.QUERY_STRING())
+		pass
+	elif request.method == 'GET':
+		pass
+	return JsonResponse

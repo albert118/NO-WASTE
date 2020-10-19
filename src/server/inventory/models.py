@@ -23,10 +23,8 @@ class Item(models.Model):
     quantity      = models.IntegerField(default=1, blank=True, null=False)
     description   = models.CharField(blank=True, max_length=100, null=False, default="")
     cost          = models.FloatField(default=0, blank=True, null=False)
-    receipt_id = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    receipt_id    = models.ForeignKey(Recipe, on_delete=models.CASCADE, default="")
     
-    # -Albert needs a Meta class for a name, otherwise the name on the form 
-    # shows up as Item Object 1
 
 
 class Inventory(models.Model):
