@@ -143,6 +143,7 @@ export const fetchResource = (path, userOptions = {}) => {
         .then(responseObject => {
             response = responseObject;
 
+            // TODO: ADD REDIRECTS HERE TO ALICE's PAGES.
             if (response.status === HttpBadRequest) {
                 console.log(`Unauthorised request with options:${options}`);
             } else if (response.status === HttpNotFound) {

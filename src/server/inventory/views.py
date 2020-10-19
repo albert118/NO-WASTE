@@ -46,25 +46,24 @@ class All(View):
     
         Get all view. Simply serializer.
         """
-
-        # all_dict = dict()
-        # data = Inventory.objects.values()
-        # for i in range(len(data)):
-        #     all_dict[i] = data[i]
-
+        # empty response object
+        response_dict = dict()
         # get the current logged in user from request.
         usr = User.objects.get(username=str(request.user))
         # get their inventory
-        usr_inv_dict  = Inventory.objects.get(user=usr).item_set.all().values()[0]
-        response_dict = {
-            "id": usr_inv_dict["id"],
-            "title": usr_inv_dict["item_name"],
-            "added_date": usr_inv_dict["added_date"],
-            "expiry_date": usr_inv_dict["expiry_date"],
-            "quantity": usr_inv_dict["quantity"],
-            "description": usr_inv_dict["description"],
-            "cost": usr_inv_dict["cost"],
-        }
+        usr_inv_listofDicts = Inventory.objects.get(
+            user=usr).item_set.all().values()
+
+        for i in range(len(usr_inv_listofDicts)):
+            # item UUID4 is id for every item entered into response.
+            response_dict[str(usr_inv_listofDicts[i]["id"])] = {
+                "title": usr_inv_listofDicts[i]["item_name"],
+                "added_date": usr_inv_listofDicts[i]["added_date"],
+                "expiry_date": usr_inv_listofDicts[i]["expiry_date"],
+                "quantity": usr_inv_listofDicts[i]["quantity"],
+                "description": usr_inv_listofDicts[i]["description"],
+                "cost": usr_inv_listofDicts[i]["cost"]
+            }
 
         return JsonResponse(response_dict, status=200)
 

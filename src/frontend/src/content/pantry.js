@@ -15,10 +15,7 @@ export default class Pantry extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: '',
-            quantity: '',
-            description: '',
-            expiryDate: '',
+            items: [],
             isLoading: true,
             loadingDefaultMsg: "loading",
         };
@@ -31,13 +28,32 @@ export default class Pantry extends Component {
     async getData() {
         // make an AJAX get req' for all current inventory in pantry...
         const responseData = await fetchResource("inventory/all", { method: "GET" });
-        this.setState({
-            title: responseData.title,
-            quantity: responseData.quantity,
-            // imgSrc: responseData.imgSrc,
-            expiryDate: responseData.expiryDate,
-            description: responseData.description,
-        });
+        if (responseData) {
+            this.setState({
+                items: Object.entries(responseData).map(([key, value]) => (value))
+            });
+        }
+    }
+
+    ItemCards() {
+        /* @author Albert Ferguson
+         *
+         * Maps the item list retrieved from AJAX to PantryItem components.
+         * Key of item is set to unique key of object via key prop.
+         * Values are unpacked with their respective keys and passed as props to PantryItem.
+         */
+        return (
+            Object.entries(this.state.items).map(([key, value]) => 
+                <PantryItem
+                    key={key} 
+                    title={value["title"]}
+                    quantity={value["quantity"]}
+                    description={value["description"]}
+                    expiryDate={value["expiry_date"]}
+                    loadingDefaultMsg={this.state.loadingDefaultMsg}
+                />
+            )
+        );
     }
 
     render() {
@@ -65,14 +81,8 @@ export default class Pantry extends Component {
                     <main>
                         {/* articles generated per pantry item here. */}
                         <div className="pantry-item-flex">
-                            {/* TODO: add mapping here to arbitrarily add as many items as needed! */}
-                            <PantryItem
-                                title={this.state.title}
-                                quantity={this.state.quantity}
-                                description={this.state.description}
-                                expiryDate={this.state.expiry_date}
-                                loadingDefaultMsg={this.state.loadingDefaultMsg}
-                            />
+                            {/* mapping here to arbitrarily add as many items as needed! */}
+                            {this.ItemCards()}
                         </div>
                     </main>
                 </section>
