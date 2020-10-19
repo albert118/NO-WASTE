@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 import uuid
 
-
 class Inventory(models.Model):
     user = models.OneToOneField(
         User,
