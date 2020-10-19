@@ -7,6 +7,7 @@ import NeonClock from '../components/NeonClock';
 // styling
 import "../static/css/pantry.css";
 import "../"
+
 // child elements and components
 import { PantryButton, BackButton } from "./buttons";
 import { fetchResource } from "../components/base";
@@ -48,9 +49,10 @@ export default class Pantry extends Component {
                     key={key} 
                     title={value["title"]}
                     quantity={value["quantity"]}
-                    description={value["description"]}
+                    lastBought={value["added_date"]}
                     expiryDate={value["expiry_date"]}
                     loadingDefaultMsg={this.state.loadingDefaultMsg}
+                    description={value["description"]}
                 />
             )
         );
@@ -100,20 +102,38 @@ class PantryItem extends Component {
         };
     }
 
-
     render() {
         const { isLoading, loadingDefaultMsg } = this.state;
         return (
             <article className="pantry-item-card-container">
-                <div className="pantry-item-card">
+                <div className="pantry-item-card level-3">
                     {/* <img src={this.state.imgSrc}></img> */}
                     <div className="card-body">
-                        <h2>{isLoading ? loadingDefaultMsg : this.props.title}</h2>
-                        <p>{isLoading ? loadingDefaultMsg : this.props.expiryDate}</p>
-                        <p>{isLoading ? loadingDefaultMsg : this.props.quantity}</p>
-                        <p>{isLoading ? loadingDefaultMsg : this.props.description}</p>
+                        <div className="card-title-details card-subheading">
+                            {isLoading ? loadingDefaultMsg : this.props.description}
+                        </div>
+                        <h2 className="card-title-details card-heading">
+                            <strong>{isLoading ? loadingDefaultMsg : this.props.title}</strong>
+                        </h2>
+                        <p>
+                            Expiry Date: {
+                                isLoading ? loadingDefaultMsg :
+                                    new Date(this.props.expiryDate).toLocaleDateString()
+                            }
+                            <br></br>
+                            Last Added: {
+                                isLoading ? loadingDefaultMsg :
+                                    new Date(this.props.lastBought).toLocaleDateString()
+                            }
+                        </p>
+                        <p></p>
+                        <p>
+                            Quantity: {
+                                isLoading ? loadingDefaultMsg :
+                                    this.props.quantity
+                            }
+                        </p>
                     </div>
-                    <button>Get More!</button>
                 </div>
             </article>
                 

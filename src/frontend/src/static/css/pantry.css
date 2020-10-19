@@ -1,4 +1,5 @@
 @import "./neon-effect.css";
+@import "../fonts/GlacialIndifferenceBold.css";
 
 h1 {
   color: white;
@@ -93,19 +94,40 @@ h1 {
   display: grid;
   /* hack: label the row and refer to it, otherwise it defaults to a second row */
   grid-template-rows: [theRow] 100%; 
-  grid-template-columns: [body] 2fr [button] 0.5fr;
+  grid-template-columns: [img] 20% [body] 80%;
   min-height: 10em;
-  box-shadow: 0 0 3vh 0 darkgray;
-  transition: 0.3s;
+  text-decoration: none;
+  border-radius: 0.2em;
+
+  /* Neon border glow */
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-animation: neonBorder 1.5s ease-in-out infinite alternate;
+  -moz-animation: neonBorder 1.5s ease-in-out infinite alternate;
+  animation: neonBorder 1.5s ease-in-out infinite alternate;
+  
+  /* Floating effect  */
+  z-index: -1;
+  background-color: #fff;
 }
 
 .pantry-item-card > img {
   height: 100%;
   margin: auto;
+  grid-column: img;
+}
+
+.pantry-item-card:hover{
+  -webkit-animation: none;
+  -moz-animation: none;
+  animation: none;
+  box-shadow: 0 0 10px #fff;
+  transition: 0.1s;
 }
 
 .pantry-item-card > .card-body {
-  color: white;
+  color: black;
   grid-row: theRow;
   grid-column: body;
   display: flex;
@@ -115,20 +137,25 @@ h1 {
   align-content: flex-start;
 }
 
-.pantry-item-card > button{
-  margin: 1em;
-  color: white;
-  background-color: black;
-  grid-row: theRow;
-  grid-column: button;
-  justify-self: center;
-  align-self: stretch;
+.card-title-details {
+  font-family: 'GlacialIndifferenceBold';
+  font-style: normal;
+  padding-right: 4em;
+  padding-bottom: 1em;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-.pantry-item-card > button:hover {
-  box-shadow: 0 0 5vh 0 red;
+.card-subheading {
+  font-weight: lighter;
+  font-size: 75%;
+  opacity: 0.75;
+  width: 60ch;
 }
 
-.pantry-item-card:hover {
-  box-shadow: 0 0 5vh 0 white;
+.card-heading {
+  font-weight: bold;
+  width: 100%;
 }
