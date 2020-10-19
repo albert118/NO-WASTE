@@ -48,7 +48,7 @@ class All(View):
 		# get the current logged in user from request.
 		usr = User.objects.get(username=str(request.user))
 		# get their inventory
-		for i, (kv) in enumerate(Inventory.objects.get(user=usr).item_set.all()):
+		for i, (k, v) in enumerate(Inventory.objects.get(user=usr).item_set.all()):
 			usr_inv_dict  = Inventory.objects.get(user=usr).item_set.all().values()[i]
 			response_dict = {
 				"id": usr_inv_dict["id"],
