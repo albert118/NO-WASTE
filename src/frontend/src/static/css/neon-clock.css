@@ -1,55 +1,30 @@
-@import "../fonts/NeonNeon.css";
-
-/*glow for webkit*/
-@-webkit-keyframes neon1 {
-  from {
-    text-shadow: 0 0 20px #FF1616, 0 0 30px #FF1616, 0 0 30px #000, 0 0 40px #FF1616, 0 0 70px #FF1616, 0 0 80px #FF1616, 0 0 100px #FF1616, 0 0 150px #FF1616;
-  }
-  to {
-    text-shadow: 0 0 3px #ff2323, 0 0 8px #ff2323, 0 0 15px #000, 0 0 20px #ff2323, 0 0 35px #ff2323, 0 0 40px #ff2323, 0 0 50px #ff2323, 0 0 75px #ff2323;
-  }
-}
-
-/*glow for mozilla*/
-@-moz-keyframes neon1 {
-  from {
-    text-shadow: 0 0 20px #FF1616, 0 0 30px #FF1616, 0 0 30px #000, 0 0 40px #FF1616, 0 0 70px #FF1616, 0 0 80px #FF1616, 0 0 100px #FF1616, 0 0 150px #FF1616;
-  }
-  to {
-    text-shadow: 0 0 3px #ff2323, 0 0 8px #ff2323, 0 0 15px #000, 0 0 20px #ff2323, 0 0 35px #ff2323, 0 0 40px #ff2323, 0 0 50px #ff2323, 0 0 75px #ff2323;
-  }
-}
-
-/*glow*/
-@keyframes neon1 {
-  from {
-    text-shadow: 0 0 20px #FF1616, 0 0 30px #FF1616, 0 0 30px #000, 0 0 40px #FF1616, 0 0 70px #FF1616, 0 0 80px #FF1616, 0 0 100px #FF1616, 0 0 150px #FF1616;
-  }
-  to {
-    text-shadow: 0 0 3px #ff2323, 0 0 8px #ff2323, 0 0 15px #000, 0 0 20px #ff2323, 0 0 35px #ff2323, 0 0 40px #ff2323, 0 0 50px #ff2323, 0 0 75px #ff2323;
-  }
-}
+@import "neon-effect.css";
 
 .clock-frame {
+  height: inherit;
+  margin: inherit;
+  padding: none;
+  border: none;
+  /* flex config */
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: baseline;
-  margin: 1vh;
-  border: none;
 }
 
+/* Text data for time, sets the text related styles */
 .clock-frame > .clock-time {
-  flex: 0 0 35px;
+  flex: 0 0 inherit;
   text-align: center;
   font-weight: normal;
   font-size: calc(4.5em + 4vmin);
-  max-width: calc(4.5em + 3vmax);/* need to fix this so tick doesnt alter sizing */
-  margin: 20px 0 20px 0;
+  max-width: calc(4.5em + 3vmax);
+  margin: 4vh 0 4vh 0;
   font-family: 'neoneonregular';
 }
 
+/* NEON glow */
 .clock-time > a {
   color: #FFE045;
   text-decoration: none;
@@ -59,13 +34,6 @@
   -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
   -moz-animation: neon1 1.5s ease-in-out infinite alternate;
   animation: neon1 1.5s ease-in-out infinite alternate;
-}
-
-.clock-time > a:hover {
-  /* color: #FF1177; */
-  -webkit-animation: none;
-  -moz-animation: none;
-  animation: none;
 }
 
   

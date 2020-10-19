@@ -1,9 +1,89 @@
-.widget-frame {
-  position: relative;
-  margin-top: 5vh;
-  display: block;
-  right: unset;
-  left: unset;
-  right: unset;
-  width: auto;
+@import "neon-effect.css";
+
+.widget-grid {
+  font-size: 0.8em;
+  font-weight: normal;
+  margin: 10px;
+  padding: 10px 0 10px 0;
+  display: grid;
+  grid-template-rows: [widget] 90% [locationDetail] 10%;
+  grid-template-columns: [mainLeft] 47.5% [divLine] 5% [mainRight] 47.5%;
+}
+
+.location {
+  grid-row-start: locationDetail;
+  grid-column: mainLeft / span 3;
+  font-size: 0.7em;
+  text-align: center;
+  padding: 5px 0 10px 0;
+}
+
+.divider {
+  grid-row: widget;
+  grid-column: divLine;
+  padding: 0 10px 0 1px;
+  border-left: 5px solid white;
+}
+
+.main-left .main-right {
+  grid-row: widget;
+  margin: 0px 2px 0px 2px;
+}
+
+.main-left {
+  grid-column: mainLeft;
+  margin: 10px 5px 10px 5px;
+}
+
+.main-left img {
+  height: 60%;
+  float: right;
+}
+
+.main-right {
+  grid-column: mainRight;
+  text-align: left;
+  margin: 10px 5px 10px 5px;
+  padding: 5px 0 5px 0;
+}
+
+.main-right .neon-elem {
+  font-weight: normal;
+  font-family: 'neoneonregular';
+  color: #FFE045;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+  animation: neon1 1.5s ease-in-out infinite alternate;
+}
+
+.main-right .neon-grid {
+  display: grid;
+  grid-template-rows: [weatherDetails] 10% [date] 30% [temp] 60%;
+  grid-template-columns: 100px;
+  row-gap: 2px;
+  justify-items: right;
+  align-items: center;
+
+}
+
+.main-right .temperature {
+  grid-row: temp;
+  font-size: calc(0.5em + 2vmax);
+}
+
+.main-right .date {
+  grid-row: date;
+  text-align: right;
+  font-size: calc(0.2em + 1vmax);
+}
+
+.main-right .weather-detail {
+  grid-row: weatherDetails;
+  justify-self: center;
+  text-align: right;
+  font-size: 0.7em;
+  font-weight: normal;
 }

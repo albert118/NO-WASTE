@@ -1,24 +1,14 @@
 @import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
 
-.center-children {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(1vh * 1vh);
+/* Logo  */
+:root {
+  background-color: #e7e7e7;
 }
 
-.App #root {
-  padding: 0.1vh;
-  margin: 2vh;
-  padding: 2vh;
-  border: none;
-  min-height: 50vh;
-  width: auto;
-  background-color: darkgray;
-  text-align: left;
-  font-size: calc(2vh * 1vmin);
-  font-weight: lighter;
-  color:black;
+.App {
+  background-color: #e7e7e7;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
 .App-logo {
@@ -43,65 +33,83 @@
   }
 }
 
-.wrapper-grid {
-  position: relative;
-  margin-top: 2vh;
-  right: unset;
-  left: unset;
-  right: unset;
+.center {
+  position: absolute;
+  right: 50%;
+  left: 50%;
+}
+
+.btn {
+  margin: 0 1vw 0 1vw;
+  height: inherit;
   width: auto;
+  box-sizing: border-box;
+  box-shadow: 0 0 5vh 0 gray;
+  background: none;
+  background-size: cover;
+  border: none;
+}
+
+section .dashboard-grid {
+  margin: auto;
+}
+
+section.hero {
+  height: 100%;
+  width: auto;
+}
+
+section.content {
+  height: 100%;
+  width: auto;
+}
+
+.btn {
+  margin: auto;
+  width: 100%;
+  box-shadow: 0 0 5vh 0 gray;
+  background: none;
+  background-size: cover;
+  align-content: center;
+  justify-content: stretch;
+  border: none;
+  border-radius: 0;
+
+}
+
+.dashboard-grid {
+  margin: auto;
+  height: auto;
+  width: 90%;
+  padding: 2vh 1vw 2vh 1vw;
   display: grid;
-  gap: 5vh;
-  column-gap: 5vh;
-  grid-template-rows: repeat(2, [row]50vh);
-  grid-template-columns: auto;
+  grid-template-rows: [heroMain] 20% [contentMain] 80%;
+  grid-template-columns: 100%;
+  row-gap: 10vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
 }
 
 .grid-item {
-  align-items: right;
-  justify-content: center;
+  align-self: stretch;
+  justify-self: center;
 }
 
-.btn-grid, .App-header-grid, .footer-grid {
+.content-main {
+  grid-row: contentMain;
+}
+
+.hero-main {
+  grid-row: heroMain;
+}
+
+
+/* Section footer - miscal. */
+.footer-grid {
   display: grid;
   row-gap: 1vh;
   column-gap: 2vh;
-}
-
-.App-header-grid {
-  grid-column: 1;
-  grid-row: row;
-  grid-template-columns: 2fr 1fr 1fr;
-}
-
-.btn-grid {
-  grid-column: 1;
-  grid-row: row 2;
   grid-template-columns: repeat(3, 1fr);
-}
-
-.footer-grid {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.App-header-box {
-  margin: 1vh;
-  box-sizing: border-box;
-  min-height: 12vh;
-  max-height: 20vh;
-  background-color: black;
-  box-shadow: 0 0 10vh 0 gray;
-  border-radius: 4vh;
-}
-
-.App-header-text {
-  font-size: calc(2vh * 1.3vmin);
-  font-weight: bold;
-  color: #fff;
-}
-
-.nobull {
-  list-style-type: none;
 }
 
 .footer-text {
@@ -129,34 +137,4 @@
 .legal {
   display: flex;
   font-weight: bold;
-}
-
-.btnRecipes > img, .btnPantry > img, .btnHealth > img, .btn
- {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  border-radius: 15%;
-  justify-content: center;
-  align-content: center;
-}
-
-.btn {
-  box-shadow: 0 0 5vh 0 gray;
-  background: none;
-  background-size: cover;
-  border: none;
-}
-
-.btnRecipes {
-  grid-column: 1;
-}
-
-.btnPantry {
-  grid-column: 2;
-}
-
-.btnHealth {
-  grid-column: 3;
 }
