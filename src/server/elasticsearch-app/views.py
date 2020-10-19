@@ -15,7 +15,6 @@ from elasticsearch import Elasticsearch
 import ast
 
 
-
 class Recipe(View):
     """
     Author Jayden Lee
@@ -101,4 +100,3 @@ class Recipe(View):
         }
 
         return query
-
