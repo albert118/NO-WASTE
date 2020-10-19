@@ -1,0 +1,9 @@
+
+@font-face {
+    font-family: 'GlacialIndifferenceBold';
+    src: url('GlacialIndifference-Bold.woff2') format('woff2'),
+         url('GlacialIndifference-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

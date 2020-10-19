@@ -1,0 +1,161 @@
+@import "./neon-effect.css";
+@import "../fonts/GlacialIndifferenceBold.css";
+
+h1 {
+  color: white;
+  font-family: 'neoneonregular';
+}
+
+.pantry {
+  padding: 1vh 1vw 1vh 1vw;
+  margin: 2vh 1vw 2vh 1vw;
+}
+
+.black-box {
+  width: 100%;
+  margin: 2vh 1vw 2vh 1vw;
+  background-color: black;
+  border-radius: 5vh;
+  box-shadow: 0 0 10vh 0 gray;
+  box-sizing: border-box;
+}
+
+.hero-header-box {
+  max-height: 25vh;
+  min-height: 10vh;
+}
+
+.content-box {
+  /* max-height: NOT SET, max is dynamic to the content.*/ 
+  min-height: 60vh;
+}
+
+.header-grid {
+  display: grid;
+  grid-template-rows: [headerCustomItems] 15vh [headerTitle] 5vh;
+  grid-template-columns: 
+    [leftCol] 20vw
+    [middleCol] 40vw
+    [rightCol] 20vw;
+  column-gap: 0.5vw;
+  row-gap: 0.5vh;
+  padding: 0.5vh;
+}
+
+.header-grid > div {
+  height: 100%;
+  margin: auto;
+  justify-self: center;
+  align-self: stretch;  
+}
+
+.header-title-item {
+  grid-column: middleCol;
+  grid-row: headerTitle;
+}
+
+.btn-back-item {
+  grid-column: leftCol;
+  grid-row: headerCustomItems;
+}
+
+.btn-pantry-item {
+  width: 20%;
+  padding: 1em;
+  grid-column: middleCol;
+  grid-row: headerCustomItems;
+}
+
+.neon-clock-item {
+  /* widget size based on the font size, resize by changing it! */
+  font-size: 45%; 
+  grid-column: rightCol;
+  grid-row: headerCustomItems;
+}
+
+.pantry-item-flex {
+  text-transform: capitalize;
+  width: 100%;
+  padding: 2vh 1vw;
+  /* flex config */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.pantry-item-card-container {
+  padding: 6vh 4vw;
+  flex: 1 0 50%;
+}
+
+.pantry-item-card {
+  display: grid;
+  /* hack: label the row and refer to it, otherwise it defaults to a second row */
+  grid-template-rows: [theRow] 100%; 
+  grid-template-columns: [img] 20% [body] 80%;
+  min-height: 10em;
+  text-decoration: none;
+  border-radius: 0.2em;
+
+  /* Neon border glow */
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-animation: neonBorder 1.5s ease-in-out infinite alternate;
+  -moz-animation: neonBorder 1.5s ease-in-out infinite alternate;
+  animation: neonBorder 1.5s ease-in-out infinite alternate;
+  
+  /* Floating effect  */
+  z-index: -1;
+  background-color: #fff;
+}
+
+.pantry-item-card > img {
+  height: 100%;
+  margin: auto;
+  grid-column: img;
+}
+
+.pantry-item-card:hover{
+  -webkit-animation: none;
+  -moz-animation: none;
+  animation: none;
+  box-shadow: 0 0 10px #fff;
+  transition: 0.1s;
+}
+
+.pantry-item-card > .card-body {
+  color: black;
+  grid-row: theRow;
+  grid-column: body;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: stretch;
+  justify-content: start;
+  align-content: flex-start;
+}
+
+.card-title-details {
+  font-family: 'GlacialIndifferenceBold';
+  font-style: normal;
+  padding-right: 4em;
+  padding-bottom: 1em;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.card-subheading {
+  font-weight: lighter;
+  font-size: 75%;
+  opacity: 0.75;
+  width: 60ch;
+}
+
+.card-heading {
+  font-weight: bold;
+  width: 100%;
+}

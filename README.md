@@ -113,15 +113,29 @@ Start with `Scripts\activate`:
 3.  Install the Python dependencies:
 
 `python -m pip install -r requirements.txt --user`
+`pip3 install -r requirements.txt`
 
-4. **Optional**: Make the docs:
+
+4. Elasticsearch Setup:
+
+Download and install elasticsearch, can be downloaded from https://www.elastic.co/downloads/elasticsearch
+Please download version 7.9.2 and store it in the src directory.
+Navigate into the elasticsearch folder and type `./elasticsearch`
+
+ElasticSearch is running by default on http://localhost:9200/ 
+
+5. Setup SQLLite Database: 
+`sudo apt-get install sqlite3`
+
+
+6. **Optional**: Make the docs:
 
 `cd docs`
 `make html`
 
 Then open build\index.html with your web browser of choice.
 
-5. **Optional**: Production database set up (Linux guide):
+7. **Optional**: Production database set up (Linux guide):
 
 This step assumes you're hosting the prod server on some Linux-esque environment. If you're crazy enough to drag Windows and all it's nonsense along, then you can do that - I didn't, I find Linux less likely to cause headaches and be more consistent.
 

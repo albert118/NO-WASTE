@@ -1,0 +1,93 @@
+@import "../fonts/GlacialIndifferenceBold.css";
+
+@media all and (min-width: 480px){
+
+  .Login {
+    padding: 2vh;
+    width: 100%;
+    background-color: #cfcfcf;
+    color: black; 
+    text-align: center;
+    font-family: 'GlacialIndifferenceBold';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 30px;
+
+  }
+
+  .Login form {
+    margin: auto;
+    width: 100%;
+    max-width: 320px;  
+  }
+
+  .title {
+    padding: 1px 0;
+    margin-top: 1px;
+    background-color: #cfcfcf;
+    color: black; 
+    text-align: center;
+    font-family: 'GlacialIndifferenceBold';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 50px;
+  }
+
+
+  .subtext {
+    padding: 1px 0;
+    margin-top: 20px;
+    background-color: #cfcfcf;
+    color: #8b8e93; 
+    text-align: center;
+    font-family: 'GlacialIndifferenceBold';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+  }
+  .photo {
+    height: 320px;
+    width: 385px;
+    align-items: center;
+    Justify-Content: center;
+  }
+
+  #float-label {
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+    position: relative;
+    transform-origin: top left;
+    transition: all 0.2s ease-out;
+    
+  }
+
+  #float-label:focus-within label {
+    transform: translate(0, 12px) scale(0.75);
+  }
+  
+  #float-label input {
+    width: 100%;
+    height: 56px;
+    padding: 14px 16px 0 10px;
+    outline: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    font-family: 'GlacialIndifferenceBold';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+  }
+  
+  #float-label label {
+    font-size: 16px;
+    font-family: 'GlacialIndifferenceBold';
+    padding: 0 12px;
+    color: #999;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(0, 26px) scale(1);
+  }
+
+}

@@ -1,71 +1,54 @@
 @import "neon-effect.css";
 
-.widget-frame {
-  position: absolute;
-  top: 0;
-  right: 350px;
-  display: inline-block;
-  margin: 0 auto;
-  width: 325px;
-  height: 200px;
+.widget-grid {
+  font-size: 0.8em;
+  font-weight: normal;
+  margin: 10px;
+  padding: 10px 0 10px 0;
+  display: grid;
+  grid-template-rows: [widget] 90% [locationDetail] 10%;
+  grid-template-columns: [mainLeft] 47.5% [divLine] 5% [mainRight] 47.5%;
 }
 
 .location {
-  position: relative;
+  grid-row-start: locationDetail;
+  grid-column: mainLeft / span 3;
   font-size: 0.7em;
-  display: block;
-  height: 40px;
   text-align: center;
-  padding-top: 5px;
-  padding-bottom: 10px;
-  top: 180px;
+  padding: 5px 0 10px 0;
 }
 
 .divider {
-  position: absolute;
-  left: 50%;
-  top: 20%;
-  bottom: 10%;
+  grid-row: widget;
+  grid-column: divLine;
   padding: 0 10px 0 1px;
-  border-left: 3px solid white;
+  border-left: 5px solid white;
 }
 
 .main-left .main-right {
-  width: 50%;
-  height: 100%;
+  grid-row: widget;
   margin: 0px 2px 0px 2px;
 }
 
 .main-left {
-  position: relative;
-  right: 40px;
-  margin-left: 10px;
+  grid-column: mainLeft;
+  margin: 10px 5px 10px 5px;
 }
 
-.main-left > span {
-  display: block;
-  left: 25px;
-  top: 93px;
+.main-left img {
+  height: 60%;
+  float: right;
 }
 
 .main-right {
-  position: relative;
+  grid-column: mainRight;
   text-align: left;
-  right: -180px;
-  top: -100px;
-  margin-right: 10px;
-  padding-top: 12px;
+  margin: 10px 5px 10px 5px;
+  padding: 5px 0 5px 0;
 }
 
-.main-right > span {
-  width: 100%;
-  float: right;
-  clear: right;
-}
-
-.main-right > span.temperature {
+.main-right .neon-elem {
   font-weight: normal;
-  font-size: calc(3em + 2vmax);
   font-family: 'neoneonregular';
   color: #FFE045;
   -webkit-transition: all 0.5s;
@@ -74,4 +57,33 @@
   -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
   -moz-animation: neon1 1.5s ease-in-out infinite alternate;
   animation: neon1 1.5s ease-in-out infinite alternate;
+}
+
+.main-right .neon-grid {
+  display: grid;
+  grid-template-rows: [weatherDetails] 10% [date] 30% [temp] 60%;
+  grid-template-columns: 100px;
+  row-gap: 2px;
+  justify-items: right;
+  align-items: center;
+
+}
+
+.main-right .temperature {
+  grid-row: temp;
+  font-size: calc(0.5em + 2vmax);
+}
+
+.main-right .date {
+  grid-row: date;
+  text-align: right;
+  font-size: calc(0.2em + 1vmax);
+}
+
+.main-right .weather-detail {
+  grid-row: weatherDetails;
+  justify-self: center;
+  text-align: right;
+  font-size: 0.7em;
+  font-weight: normal;
 }
