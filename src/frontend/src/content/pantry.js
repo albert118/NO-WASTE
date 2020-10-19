@@ -30,9 +30,9 @@ class Pantry extends Component {
     async getData() {
         // make an AJAX get req' for all current inventory in pantry...
         const responseData = await fetchResource("inventory/all", { method: "GET" });
-        if (String(responseData).includes("login")) {
+        if (typeof (responseData) === "string") {
             this.props.history.push("/login");
-        } else if (typeof (responseData) === Object) {
+        } else if (typeof (responseData) === "object") {
             this.setState({
                 items: Object.entries(responseData).map(([key, value]) => (value))
             });

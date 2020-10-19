@@ -78,7 +78,7 @@ class All(View):
         response = HttpResponse()
         response['allow'] = ','.join(self.allowed_methods)
         return response
-
+        
 
 class AlphabeticOrder(View):
     """
