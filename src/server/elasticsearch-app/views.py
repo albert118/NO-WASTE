@@ -58,13 +58,6 @@ class Recipe(View):
         recipe_search = ast.literal_eval(recipe_search)
         return JsonResponse(recipe_search, status = 200)
 
-    def post(self, request, *args, **kwargs):
-
-        return HttpResponse(str("hi"), status = 200)
-
-
-def csrf(request):
-    return JsonResponse({ 'csrfToken': get_token(request) })
 
 def buildRecipesQuery(inventoryList, keywords=None, *args, **kwargs):
     match = []
