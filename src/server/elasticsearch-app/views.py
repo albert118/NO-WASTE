@@ -67,13 +67,6 @@ def csrf(request):
     return JsonResponse({ 'csrfToken': get_token(request) })
 
 def buildRecipesQuery(inventoryList, keywords=None, *args, **kwargs):
-    # query = {
-    #     'query': {
-    #         'multi_match': 
-    #         {'query': inventoryList, 
-    #         'fields': "ingredients"}
-    #     }
-    # }
     match = []
 
     for i in range(len(inventoryList)):

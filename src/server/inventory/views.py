@@ -51,8 +51,7 @@ class All(View):
         # get the current logged in user from request.
         usr = User.objects.get(username=str(request.user))
         # get their inventory
-        usr_inv_listofDicts = Inventory.objects.get(
-            user=usr).item_set.all().values()
+        usr_inv_listofDicts = Inventory.objects.get(user=usr).item_set.all().values()
 
         for i in range(len(usr_inv_listofDicts)):
             # item UUID4 is id for every item entered into response.
