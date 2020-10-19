@@ -108,6 +108,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+elasticsearch/
 
 # Spyder project settings
 .spyderproject
