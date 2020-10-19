@@ -8,5 +8,5 @@ from . import views as elasticViews
 urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('/', elasticViews.Recipe.as_view(), name="Test")
+    # path('', elasticViews.Recipe.as_view(), name="Test")
 ]
