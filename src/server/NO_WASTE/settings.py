@@ -81,14 +81,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'easy_thumbnails', # auto render thumbnails to correct sizes
-    'crispy_forms', # crispy form tags
-    'debug_toolbar', # debug toolbar for analysis of webpages loaded by django in debug mode
-    'health_macros', # the health macro tracker app, designation "HM"
-    'accounts.apps.AccountsConfig', # accounts app for user and admin login management
-    'django_extensions',  # extensions for the django manage.py interface
-    'corsheaders', # enable CORS header control
-    'inventory', # enable the inventory app
+    'easy_thumbnails',
+    'crispy_forms',
+    'debug_toolbar',
+    'health_macros',
+    'django_extensions',
+    'inventory',
     'elasticsearch-app',
 ]
 

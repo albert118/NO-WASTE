@@ -11,6 +11,10 @@ class Inventory(models.Model):
         on_delete=models.CASCADE,
         primary_key=True
     )
+    
+class Author(models.Model):
+    name          = models.CharField(max_length=100)
+    title         = models.CharField(blank=False, max_length=30)
 
 class Recipe(models.Model):
         
@@ -20,6 +24,16 @@ class Recipe(models.Model):
     total_cost    = models.FloatField(blank=True, null=False, default=0)
     purchase_location  = models.CharField(max_length=100) # -Albert MORE DESCRIPTIVE NAME?
     num_items     = models.IntegerField(default=0)
+
+class Item(models.Model):
+    expiry_date   = models.DateField(blank=False)
+    added_date    = models.DateField(default=date.today())
+    quantity      = models.IntegerField(default=1, blank=True, null=False)
+    description   = models.CharField(blank=True, max_length=100, null=False, default="")
+    cost          = models.FloatField(default=0, blank=True, null=False)
+    receipt_id    = models.ForeignKey(Recipe, on_delete=models.CASCADE, default="")
+    
+
 
 class Item(models.Model):
     expiry_date   = models.DateField(blank=False)
