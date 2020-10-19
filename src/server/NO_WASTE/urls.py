@@ -16,7 +16,7 @@ urlpatterns = [
     path("admin/", admin.site.urls, name="admin"),
     path("accounts/", include('accounts.urls')),
     path("admin/", admin.site.urls),
-    path("inventory/", invViews.Inventory.as_view()),
+    path("inventory/", include("inventory.urls")),
     path("elasticsearch/", include("elasticsearch-app.urls"), name="ElasticSearch")
 ] 
 # User-uploaded files like profile pics need to be served in development

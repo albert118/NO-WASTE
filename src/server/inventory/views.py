@@ -30,127 +30,83 @@ from .models import Item, User, Inventory
 ##########################
 
 class All(View):
+	allowed_methods = ["get", "options"]
+
+	@method_decorator(login_required)
+	def get(self, request, *args, **kwargs):
+		"""
+		Author: Albert Ferguson + Jayden Lee
+
+		Get all view. Simply serializer.
+		"""
+
+		all_dict = {
+			"time:": timezone.now(),
+			"inventory": list()
+		}
+		
+		# get the current logged in user from request.
+		usr = User.objects.get(username=str(request.user))
+		# get their inventory
+		for i in range(len()):
+			usr_inv_dict  = Inventory.objects.get(user=usr).item_set.all().values()[i]
+			response_dict = {
+				"id": usr_inv_dict["id"],
+				"title": usr_inv_dict["item_name"],
+				"added_date": usr_inv_dict["added_date"],
+				"expiry_date": usr_inv_dict["expiry_date"],
+				"quantity": usr_inv_dict["quantity"],
+				"description": usr_inv_dict["description"],
+				"cost": usr_inv_dict["cost"],
+			}
+			all_dict["inventory"].append(response_dict)
+
+		return JsonResponse(response_dict, status=200)
 
 
-    # """
-    # Author: Ryan Cleminson + Jayden Lee
-    # """
+def options(self, request):
+	"""
+	Author: Ryan Cleminson
+	
+	Returns the options allowed for the current view.
+	"""
 
-    # allowed_methods = ["get", "options"]
-
-
-    # @method_decorator(login_required)
-    # def get(self, request, *args, **kwargs):
-
-    #     listOfObjects = list()
-
-    #     ItemObject = {
-    #         "name": "",
-    #         "expiry_date": "",
-    #         "added_date": "",
-    #         "quantity": 0,
-    #         "description": "",
-    #         "cost": float(0),
-    #     }
-        
-    #     for i in Item.objects.all():
-    #         toAppendObject = dict(ItemObject)
-    #         toAppendObject["name"] = i.item_name
-    #         toAppendObject["quantity"] = int(i.quantity)
-    #         toAppendObject["cost"] = float(i.cost)
-    #         listOfObjects.append(toAppendObject)
-        
-    #     responseObject = {
-    #         "time": timezone.now(),
-    #         "recipies": listOfObjects,
-    #     }
-    #  return JsonResponse(responseObject, status = 200)
-
-    class All(View):
-    """
-    Author: Ryan Cleminson
-    Author: Albert Ferguson
-    Get all view.
-    """
-
-    allowed_methods = ["get", "options"]
-
-    @method_decorator(login_required)
-    def get(self, request, *args, **kwargs):
-        """
-        Author: Albert Ferguson
-    
-        Get all view. Simply serializer.
-        """
-
-        all_dict = {
-            "time:" timezone.now(),
-            "inventory": list()
-
-        }
-        
-        # get the current logged in user from request.
-        usr = User.objects.get(username=str(request.user))
-        # get their inventory
-        for i in range(len()):
-            usr_inv_dict  = Inventory.objects.get(user=usr).item_set.all().values()[i]
-            response_dict = {
-                "id": usr_inv_dict["id"],
-                "title": usr_inv_dict["item_name"],
-                "added_date": usr_inv_dict["added_date"],
-                "expiry_date": usr_inv_dict["expiry_date"],
-                "quantity": usr_inv_dict["quantity"],
-                "description": usr_inv_dict["description"],
-                "cost": usr_inv_dict["cost"],
-            }
-            all_dict["inventory"].append(response_dict)
-
-        return all_dict(response_dict, status=200)
-
-
-    def options(self, request):
-        """
-        Author: Ryan Cleminson
-        
-        Returns the options allowed for the current view.
-        """
-
-        response = HttpResponse()
-        response['allow'] = ','.join(self.allowed_methods)
-        return response
+	response = HttpResponse()
+	response['allow'] = ','.join(self.allowed_methods)
+	return response
 
 
 class AlphabeticOrder(View):
-    """
-    Author: Albert Ferguson
+	"""
+	Author: Albert Ferguson
 
-    Get ordered view.
-    """
+	Get ordered view.
+	"""
 
-    allowed_methods = ["get", "options"]
+	allowed_methods = ["get", "options"]
 
-    @method_decorator(login_required)
-    def get(self, request, *args, **kwargs):
-        """
-        Author: Albert Ferguson
-    
-        Get all view. Simple ordered serializer.
-        """
+	@method_decorator(login_required)
+	def get(self, request, *args, **kwargs):
+		"""
+		Author: Albert Ferguson
+	
+		Get all view. Simple ordered serializer.
+		"""
 
-        all_dict = dict()
-        data = Recipe.objects.values_list("recipe_name", "added_date")
-        for i in range(len(data)):
-            all_dict[i] = data[i]
+		all_dict = dict()
+		data = Recipe.objects.values_list("recipe_name", "added_date")
+		for i in range(len(data)):
+			all_dict[i] = data[i]
 
-        return JsonResponse(all_dict, status=200)
+		return JsonResponse(all_dict, status=200)
 
-    def options(self, request):
-        """
-        Author: Albert Ferguson
-        
-        Returns the options allowed for the current view.
-        """
+	def options(self, request):
+		"""
+		Author: Albert Ferguson
+		
+		Returns the options allowed for the current view.
+		"""
 
-        response = HttpResponse()
-        response['allow'] = ','.join(self.allowed_methods)
-        return response
+		response = HttpResponse()
+		response['allow'] = ','.join(self.allowed_methods)
+		return response
