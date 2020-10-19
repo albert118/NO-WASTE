@@ -27,46 +27,51 @@ from django.utils import timezone
 # Create your views here.
 from . import models
 from elasticsearch import Elasticsearch
+from inventory.models import Item, User, Inventory
 
 
 # Create your views here.
 
 
 class Recipe(View):
-	""" Author Jayden Lee"""
+    """ Author Jayden Lee"""
+    def __init__(self):
+        self.es = Elasticsearch([{'host': '127.0.0.1', 'port': 9200}])
 
-	def get(self, request, *args, **kwargs):
-		listOfObjects = (1,2,3)
+    def get(self, request, *args, **kwargs):
 
-		Recipes = {
-			"name": "",
-			"ingredients": "",
-			"instructions": "",
-		}
-		
-		responseObject = {
-			"time": timezone.now(),
-			"Recipes": listOfObjects,
-		}
+        pantryContent = list()
+        # get the current logged in user from request.
+        usr = User.objects.get(username=str(request.user))
+        # get their inventory
+        usr_inv_listofDicts = Inventory.objects.get(user=usr).item_set.all().values()
 
-		return JsonResponse(responseObject, status = 200)
+        for i in range(len(usr_inv_listofDicts)):
+            # item UUID4 is id for every item entered into response.
+            pantryContent.append(usr_inv_listofDicts[i]["item_name"])
 
-	def post(self, request, *args, **kwargs):
-		return HttpResponse(str("hi"), status = 200)
+        recipe_search_query = buildRecipesQuery(pantryContent)
+        print(recipe_search_query)
 
-		# form = InventoryForm(content)
-		# if form.is_valid():
-		#     form.save()
-		#     return HttpResponse("successfully added item", status=200)
-		# else:
-		# return HttpResponseBadRequest("U FUCKED UP")
+        recipe_search = self.es.search(index="recipes", body=recipe_search_query)
+
+        return HttpResponse(str(recipe_search), status = 200)
+
+    def post(self, request, *args, **kwargs):
+
+        return HttpResponse(str("hi"), status = 200)
 
 
 def csrf(request):
-	return JsonResponse({ 'csrfToken': get_token(request) })
+    return JsonResponse({ 'csrfToken': get_token(request) })
 
-def ElasticQuuery(request):
-	if request.method == 'GET':
-		
-		pass
-	return JsonResponse
+def buildRecipesQuery(inventoryList, keywords=None, *args, **kwargs):
+    query = {
+        'query': {
+            'multi_match': 
+            {'query': inventoryList, 'fields': "ingredients", '_name': 'keywords'}
+        }
+    }
+    
+    return query
+
