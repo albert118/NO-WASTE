@@ -73,6 +73,8 @@ section.content {
   align-content: center;
   justify-content: stretch;
   border: none;
+  width: 320px; 
+  height: 40px;
   border-radius: 0;
 
 }
