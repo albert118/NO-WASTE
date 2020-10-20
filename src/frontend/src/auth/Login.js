@@ -157,8 +157,6 @@ class Login extends Component {
                      <p className="subtext"> Not a member? 
                      <Link to="../signup" className="linktext"> Sign up.</Link>
                      </p>
-                
-             
             </div>
         );
     }

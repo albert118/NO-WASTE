@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 
 # Http req and res
-from django.http import HttpRequest, Http404, HttpResponse, HttpResponseBadRequest
+from django.http import HttpRequest, Http404, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 # csrf and api logic
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
@@ -23,7 +23,7 @@ import json # for serialization and deserialization
 
 
 class LoginView(View):
-    allowed_methods = ['post', 'options']
+    allowed_methods = ['post', 'get', 'options']
     name = "Login View"
 
     @method_decorator(never_cache)
@@ -40,6 +40,11 @@ class LoginView(View):
         else:
             # user login failed but authentication passed? IDK must be a bad request
             return HttpResponseBadRequest(str(user))
+
+    def get(self, request, *args, **kwargs):
+        response = HttpResponse("http://localhost:3000/login/", status=301)
+        response['Access-Control-Allow-Origin'] = '*'
+        return response
 
     @method_decorator(never_cache)
     def options(self, request):

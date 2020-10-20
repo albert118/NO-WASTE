@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from "react-router-dom";
-import { About, Admin, Home } from './djangoPages'
+import { Redirect, useHistory } from "react-router-dom";
+import { About, Admin, Home } from './djangoPages';
+
+// styling
 import "../static/css/buttons.css";
+import { Button } from 'react-bootstrap';
 
 export default class Buttons extends Component {
     render() {
         return (
             <div className="btn-grid">
-                <button className="btn-grid-item btnRecipes btn" />
-                <button className="btn-grid-item btnPantry btn" />
-                <button className="btn-grid-item btnHealth btn" />
+                <RecipesButton />
+                <PantryButton />
+                <HealthButton />
             </div>
-        )
+        );
     }
 }
 
 export class RecipesButton extends Component {
     render() {
         return (
-            <button className="btnRecipes btn" />
+            <Button href="/recipes" className="btnRecipes btn" />
         );
     }
 }
@@ -30,7 +29,7 @@ export class RecipesButton extends Component {
 export class PantryButton extends Component {
     render() {
         return (
-            <button className="btnPantry btn" />
+            <Button href="/pantry" className="btnPantry btn" />
         );
     }
 }
@@ -38,7 +37,17 @@ export class PantryButton extends Component {
 export class HealthButton extends Component {
     render() {
         return (
-            <button className="btnHealth btn" />
+            <Button href="/health" className="btnHealth btn" />
         );
     }
 }
+
+export class BackButton extends Component {
+    render() {
+        // WHAT A HACK
+        // Doesnt actually send you back, just guesses that back is homedash lol
+        return (
+           <Button href="/" className = "btnBack btn" />
+        );
+    }
+} 

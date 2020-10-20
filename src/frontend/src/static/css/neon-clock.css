@@ -1,25 +1,30 @@
 @import "neon-effect.css";
 
 .clock-frame {
+  height: inherit;
+  margin: inherit;
+  padding: none;
+  border: none;
+  /* flex config */
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: baseline;
-  margin: 1vh;
-  border: none;
 }
 
+/* Text data for time, sets the text related styles */
 .clock-frame > .clock-time {
-  flex: 0 0 35px;
+  flex: 0 0 inherit;
   text-align: center;
   font-weight: normal;
   font-size: calc(4.5em + 4vmin);
   max-width: calc(4.5em + 3vmax);
-  margin: 20px 0 20px 0;
+  margin: 4vh 0 4vh 0;
   font-family: 'neoneonregular';
 }
 
+/* NEON glow */
 .clock-time > a {
   color: #FFE045;
   text-decoration: none;
