@@ -1,4 +1,5 @@
 @import "../fonts/GlacialIndifferenceBold.css";
+@import "../fonts/GlacialIndifferenceRegular.css";
 @media all and (min-width: 480px) {
   .Signup {
     padding: 2vh;
