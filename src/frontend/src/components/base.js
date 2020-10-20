@@ -147,10 +147,13 @@ export const fetchResource = (path, userOptions = {}) => {
             // TODO: ADD REDIRECTS HERE TO ALICE's PAGES.
             if (response.status === HttpBadRequest) {
                 console.log(`Unauthorised request with options:${options}`);
+                this.props.history.push('/HTTPerror/error400')
             } else if (response.status === HttpNotFound) {
                 console.log(`Resource at: ${path} not found: 404`);
+                this.props.history.push('/HTTPerror/error404')
             } else if (response.status === HttpUnauthorised) {
                 console.log(`Unauthorised request for resource at ${path}!\nThis has been logged.`);
+                this.props.history.push('/HTTPerror/error403')
                 // TODO: add redirect to login page.
             } else if (response.status < 200 || response.status >= 300) {
                 // return the response message as text
