@@ -26,6 +26,13 @@ import Login from './auth/Login'   // auth component logic, interfaces with Djan
 import Logout from './auth/Logout' // auth signout logic
 import SignUp from './auth/SignUp' // auth signup logic
 
+//errors
+import error400 from './HTTPerror/error400.js' 
+import error401 from './HTTPerror/error401.js' 
+import error403 from './HTTPerror/error403.js' 
+import error404 from './HTTPerror/error404.js' 
+import error500 from './HTTPerror/error500.js' 
+
 class App extends Component {
 	render() {
 		return (
@@ -39,6 +46,13 @@ class App extends Component {
                         <Route path="/logout" component={Logout} />
                         <Route path="/signup" component={SignUp} />
                         <Route path="/pantry" component={Pantry} />
+                        {/*errors*/}
+                        <Route path="/error400" component={error400}/>
+                        <Route path="/error404" component={error404}/>
+                        <Route path="/error500" component={error500}/>
+                        <Route path="/error403" component={error403}/>
+                        <Route path="/error401" component={error401}/>
+                        
                     </Switch>
                     <Footer />
                 </div>

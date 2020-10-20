@@ -2,8 +2,6 @@
 // https://github.com/ihor/react-styled-floating-label git repo for floating labels
 import React, { Component } from "react";
 
-import { Link } from 'react-router';
-
 import {
     Button,
     FormGroup,
@@ -12,6 +10,7 @@ import {
 } from "react-bootstrap";
 
 import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Logo from '../static/site/img/logonew.svg';
 
@@ -155,8 +154,9 @@ class Login extends Component {
                         }
                     >LOGIN</Button>
                 </form>
-                     <p className="subtext"> Not a member? link text->Sign Up</p>
-{/*add link to sign up page here*/}
+                     <p className="subtext"> Not a member? 
+                     <Link to="../signup" className="linktext"> Sign up.</Link>
+                     </p>
                 
              
             </div>

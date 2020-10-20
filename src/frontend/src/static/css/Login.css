@@ -1,4 +1,5 @@
 @import "../fonts/GlacialIndifferenceBold.css";
+@import "../fonts/GlacialIndifferenceRegular.css";
 
 @media all and (min-width: 480px){
 
@@ -40,11 +41,22 @@
     background-color: #cfcfcf;
     color: #8b8e93; 
     text-align: center;
-    font-family: 'GlacialIndifferenceBold';
+    font-family: 'GlacialIndifferenceRegular';
     font-weight: normal;
     font-style: normal;
     font-size: 20px;
   }
+
+  
+  .linktext{
+    color: #8e8b93; 
+    text-align: center;
+    font-family: 'GlacialIndifferenceRegular';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+}
+
   .photo {
     height: 320px;
     width: 385px;
@@ -61,6 +73,8 @@
     transition: all 0.2s ease-out;
     
   }
+
+  
 
   #float-label:focus-within label {
     transform: translate(0, 12px) scale(0.75);
