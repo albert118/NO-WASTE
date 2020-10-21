@@ -1,0 +1,34 @@
+@import "../fonts/GlacialIndifferenceBold.css";
+@import "../fonts/GlacialIndifferenceRegular.css";
+
+@media all and (min-width: 480px){
+
+    .title{
+        color: black; 
+        text-align: center;
+        font-family: 'GlacialIndifferenceBold';
+        font-weight: bold;
+        font-style: normal;
+        font-size: 100px;
+    }
+
+    .subtext{       
+        color: black; 
+        text-align: center;
+        font-family: 'GlacialIndifferenceRegular';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 25px;
+    }
+
+    .linktext{
+        color: #8e8b93; 
+        text-align: center;
+        font-family: 'GlacialIndifferenceRegular';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 25px;
+    }
+
+
+}
