@@ -74,8 +74,9 @@ export const fetchResource = (path, userOptions = {}) => {
     }
 
     // standard HTTP errors to check for
-    const HttpUnauthorised = 401;
     const HttpNotFound = 404;
+    const HttpUnauthorised = 401;
+    const HttpForbidden = 403
     const HttpBadRequest = 400;
     const HttpMovedPermanently = 301;
 
@@ -144,21 +145,32 @@ export const fetchResource = (path, userOptions = {}) => {
         .then(responseObject => {
             response = responseObject;
 
-            // TODO: ADD REDIRECTS HERE TO ALICE's PAGES.
-            if (response.status === HttpBadRequest) {
-                console.log(`Unauthorised request with options:${options}`);
-            } else if (response.status === HttpNotFound) {
-                console.log(`Resource at: ${path} not found: 404`);
-            } else if (response.status === HttpUnauthorised) {
-                console.log(`Unauthorised request for resource at ${path}!\nThis has been logged.`);
-                // TODO: add redirect to login page.
-            } else if (response.status < 200 || response.status >= 300) {
-                // return the response message as text
-                return response.text();
+            switch (response.status) {
+                case HttpBadRequest:
+                    console.log(`Unauthorised request with options:${options}`);
+                    this.props.history.push('/HTTPerror/error400');
+                    break;
+                case HttpUnauthorised:
+                    console.log(`Unauthorised request for resource at ${path}!\nThis has been logged.`);
+                    this.props.history.push('/HTTPerror/error401');
+                    break;
+                case HttpForbidden:
+                    console.log(`Unauthorised request for resource at ${path}!\nThis has been logged.`);
+                    this.props.history.push('/HTTPerror/error403');
+                    break;
+                case HttpNotFound:
+                    console.log(`Resource at: ${path} not found: 404`);
+                    this.props.history.push('/HTTPerror/error404');
+                    break;
+                default:
+                    if (response.status < 200 || response.status >= 300) {
+                        // return the response message as text
+                        return response.text();
+                    } else {
+                        // return the json response
+                        return response.json();
+                    }
             }
-            // return the json response
-            return response.json();
-                
         }).then(parsedResponse => {
             if (response.status === HttpMovedPermanently) {  
                 return parsedResponse; // redirect!!
