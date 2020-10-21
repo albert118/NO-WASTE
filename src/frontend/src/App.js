@@ -46,13 +46,13 @@ class App extends Component {
                         <Route path="/logout" component={Logout} />
                         <Route path="/signup" component={SignUp} />
                         <Route path="/pantry" component={Pantry} />
-                        {/*errors*/}
-                        <Route path="/error400" component={error400}/>
-                        <Route path="/error404" component={error404}/>
-                        <Route path="/error500" component={error500}/>
-                        <Route path="/error403" component={error403}/>
-                        <Route path="/error401" component={error401}/>
-                        
+                        {/*  Error rotues */}
+                        <Route path="/error400" component={error400} />
+                        <Route path="/error404" component={error404} />
+                        <Route path="/error500" component={error500} />
+                        <Route path="/error403" component={error403} />
+                        <Route path="/error401" component={error401} />
+                        <Route component={error404} /> {/* Default route on no other route found (404 not found). */}
                     </Switch>
                     <Footer />
                 </div>
